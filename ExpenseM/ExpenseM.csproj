@@ -64,8 +64,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="UserControls\TextboxWithLabel.xaml.cs">
-      <DependentUpon>TextboxWithLabel.xaml</DependentUpon>
+    <Compile Include="UserControls\LabeledTextbox.xaml.cs">
+      <DependentUpon>LabeledTextbox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateUserWindow.xaml.cs">
+      <DependentUpon>CreateUserWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HomeWindow.xaml.cs">
       <DependentUpon>HomeWindow.xaml</DependentUpon>
@@ -114,7 +117,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="UserControls\TextboxWithLabel.xaml">
+    <Page Include="UserControls\LabeledTextbox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CreateUserWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -10,19 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ExpenseM.UserControls
+namespace ExpenseM.Views
 {
     /// <summary>
-    /// Interaction logic for TextboxWithLabel.xaml
+    /// Interaction logic for CreateUserWindow.xaml
     /// </summary>
-    public partial class TextboxWithLabel : UserControl
+    public partial class CreateUserWindow : Window
     {
-        public TextboxWithLabel()
+        public CreateUserWindow()
         {
             InitializeComponent();
+        }
+
+        private void CreateBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

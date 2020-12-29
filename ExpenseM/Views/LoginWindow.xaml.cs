@@ -19,16 +19,29 @@ namespace ExpenseM.Views
     /// </summary>
     public partial class LoginWindow : Window
     {
+
+        private String _username;
         public LoginWindow()
         {
             InitializeComponent();
+       
+
         }
 
-        private void BtnLoginClick(object sender, RoutedEventArgs e)
+
+        private void CreateUserBtn_Click(object sender, RoutedEventArgs e)
+        {
+            CreateUserWindow createUser = new CreateUserWindow();
+            createUser.Show();
+        }
+
+        private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
             HomeWindow home = new HomeWindow();
             home.Show();
+
             this.Close();
+
         }
     }
 }
