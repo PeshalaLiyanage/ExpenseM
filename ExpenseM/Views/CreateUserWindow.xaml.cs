@@ -34,8 +34,6 @@ namespace ExpenseM.Views
 
             if (tempUserData != null)
             {
-
-
                 this.FirstNameInputbox.Text = tempUserData.FirstName;
                 this.LastNameInputbox.Text = tempUserData.LastName;
                 this.AddressInputbox.Text = tempUserData.Address;
@@ -44,7 +42,7 @@ namespace ExpenseM.Views
             }
         }
 
-        private void CreateBtn_Click(object sender, RoutedEventArgs e)
+        private async void CreateBtn_Click(object sender, RoutedEventArgs e)
         {
             userModel = new UserModel(
                 this.FirstNameInputbox.Text,
@@ -56,13 +54,22 @@ namespace ExpenseM.Views
 
             userModel.Password = this.PasswordInputbox.Password;
 
-            userModel.AddUser();
+            await Task.Run(() =>
+            {
+                try
+                {
+                    userModel.AddUser();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            });
+
         }
 
-       
         private void UserInput_LostFocus(object sender, RoutedEventArgs e)
         {
-
             userModel = new UserModel(
                this.FirstNameInputbox.Text,
                this.LastNameInputbox.Text,

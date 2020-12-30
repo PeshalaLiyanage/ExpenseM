@@ -8,24 +8,24 @@ using ExpenseM.Entities;
 
 namespace ExpenseM.Utilities
 {
-    class CommonUtilities
+    class FileUtilities
     {
-        private static CommonUtilities instance = null;
-        private static readonly object padlock = new object();
+        private static FileUtilities instance = null;
+        private static readonly object syncObj = new object();
 
-        CommonUtilities()
+        FileUtilities()
         {
         }
 
-        public static CommonUtilities GetInstance
+        public static FileUtilities GetInstance
         {
             get
             {
-                lock (padlock)
+                lock (syncObj)
                 {
                     if (instance == null)
                     {
-                        instance = new CommonUtilities();
+                        instance = new FileUtilities();
                     }
                     return instance;
                 }
@@ -41,9 +41,15 @@ namespace ExpenseM.Utilities
             expenseMData.WriteXml(path);
         }
 
-        public void ReadFromFile(ExpenseMDataSet expenseMData, String path)
+        public dynamic ReadFromFile(ExpenseMDataSet expenseMData, String path)
         {
-            expenseMData.ReadXml(path);
+            if (File.Exists(path) == true)
+            {
+                 return expenseMData.ReadXml(path);
+            }
+
+            return null;
+            
         }
     }
 }

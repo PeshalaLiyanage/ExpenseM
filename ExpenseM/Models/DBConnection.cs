@@ -10,7 +10,7 @@ namespace ExpenseM.Models
     class DBConnection
     {
         private static DBConnection instance = null;
-        private static readonly object padlock = new object();
+        private static readonly object syncObj = new object();
 
         ExpenseMDataModelContainer dbConnection;
 
@@ -19,26 +19,19 @@ namespace ExpenseM.Models
             dbConnection = new ExpenseMDataModelContainer();
         }
 
-        public static DBConnection GetInstance
+        public static ExpenseMDataModelContainer Connection
         {
             get
             {
-                lock (padlock)
+                lock (syncObj)
                 {
                     if (instance == null)
                     {
                         instance = new DBConnection();
                     }
-                    return instance;
+                    return instance.dbConnection;
                 }
             }
-        }
-
-
-        public ExpenseMDataModelContainer DB
-        {
-            get { return dbConnection; }
-
         }
 
     }
