@@ -64,9 +64,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Entities\ExpenseMDataSet.cs">
+      <DependentUpon>ExpenseMDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DBConnection.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="UserControls\LabeledTextbox.xaml.cs">
       <DependentUpon>LabeledTextbox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\CommonUtilities.cs" />
     <Compile Include="Views\CreateUserWindow.xaml.cs">
       <DependentUpon>CreateUserWindow.xaml</DependentUpon>
     </Compile>
@@ -179,11 +185,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="Storage\" />
-    <Folder Include="Utilities\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Entities\ExpenseMDataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

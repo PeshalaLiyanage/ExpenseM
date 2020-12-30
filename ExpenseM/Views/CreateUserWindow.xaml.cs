@@ -11,6 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ExpenseM.Models;
+using ExpenseM.Entities;
+using ExpenseM.Utilities;
+using System.IO;
 
 namespace ExpenseM.Views
 {
@@ -19,14 +23,55 @@ namespace ExpenseM.Views
     /// </summary>
     public partial class CreateUserWindow : Window
     {
+        UserModel userModel;
+        ExpenseMDataSet tempUserData = new ExpenseMDataSet();
+
         public CreateUserWindow()
         {
             InitializeComponent();
+
+            UserModel tempUserData = new UserModel().getTempUserDataFromFile();
+
+            if (tempUserData != null)
+            {
+
+
+                this.FirstNameInputbox.Text = tempUserData.FirstName;
+                this.LastNameInputbox.Text = tempUserData.LastName;
+                this.AddressInputbox.Text = tempUserData.Address;
+                this.PhoneNumberInputbox.Text = tempUserData.PhoneNumber;
+                this.EmailInputbox.Text = tempUserData.Email;
+            }
         }
 
         private void CreateBtn_Click(object sender, RoutedEventArgs e)
         {
+            userModel = new UserModel(
+                this.FirstNameInputbox.Text,
+                this.LastNameInputbox.Text,
+                this.AddressInputbox.Text,
+                this.PhoneNumberInputbox.Text,
+                this.EmailInputbox.Text, 1
+                );
 
+            userModel.Password = this.PasswordInputbox.Password;
+
+            userModel.AddUser();
+        }
+
+       
+        private void UserInput_LostFocus(object sender, RoutedEventArgs e)
+        {
+
+            userModel = new UserModel(
+               this.FirstNameInputbox.Text,
+               this.LastNameInputbox.Text,
+               this.AddressInputbox.Text,
+               this.PhoneNumberInputbox.Text,
+               this.EmailInputbox.Text, 1
+               );
+
+            userModel.AddTempUserDataToFile();
         }
     }
 }
