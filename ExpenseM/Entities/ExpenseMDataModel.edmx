@@ -23,21 +23,21 @@
     <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
     <Property Name="PhoneNo" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="UserType" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="CreatedAt" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserType" Type="smallint" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="CreatedAt" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Transactions">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="TransactionTyoe" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Amount" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="RecurrentStatus" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="StartDate" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="EndDate" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="CreatedAt" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TransactionTyoe" Type="smallint" Nullable="false" />
+    <Property Name="Amount" Type="smallint" Nullable="false" />
+    <Property Name="RecurrentStatus" Type="smallint" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" Nullable="false" />
+    <Property Name="EndDate" Type="datetime" Nullable="true" />
+    <Property Name="CreatedAt" Type="datetime" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="UserTransaction">
@@ -74,9 +74,9 @@
           <Property Name="Address" Type="String" Nullable="false" />
           <Property Name="PhoneNo" Type="String" Nullable="false" />
           <Property Name="Email" Type="String" Nullable="false" />
-          <Property Name="UserType" Type="String" Nullable="false" />
-          <Property Name="Password" Type="String" Nullable="false" />
-          <Property Name="CreatedAt" Type="String" Nullable="false" />
+          <Property Name="UserType" Type="Int16" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="true" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="Transactions" Relationship="ExpenseMDataModel.UserTransaction" FromRole="User" ToRole="Transaction" />
         </EntityType>
         <EntityType Name="Transaction">
@@ -84,12 +84,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TransactionTyoe" Type="String" Nullable="false" />
-          <Property Name="Amount" Type="String" Nullable="false" />
-          <Property Name="RecurrentStatus" Type="String" Nullable="false" />
-          <Property Name="StartDate" Type="String" Nullable="false" />
-          <Property Name="EndDate" Type="String" Nullable="false" />
-          <Property Name="CreatedAt" Type="String" Nullable="false" />
+          <Property Name="TransactionTyoe" Type="Int16" Nullable="false" />
+          <Property Name="Amount" Type="Int16" Nullable="false" />
+          <Property Name="RecurrentStatus" Type="Int16" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" />
+          <Property Name="EndDate" Type="DateTime" Nullable="true" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="User" Relationship="ExpenseMDataModel.UserTransaction" FromRole="Transaction" ToRole="User" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
         </EntityType>

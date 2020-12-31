@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ExpenseM.Models;
 
 namespace ExpenseM.Views
 {
@@ -19,13 +20,13 @@ namespace ExpenseM.Views
     /// </summary>
     public partial class LoginWindow : Window
     {
+        private String username;
+        private String password;
 
-        private String _username;
         public LoginWindow()
         {
             InitializeComponent();
-       
-
+           
         }
 
 
@@ -35,13 +36,33 @@ namespace ExpenseM.Views
             createUser.Show();
         }
 
-        private void LoginBtn_Click(object sender, RoutedEventArgs e)
+        private async void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-            HomeWindow home = new HomeWindow();
-            home.Show();
+            username = this.UsernameInput.Text;
+            password = this.PasswordInput.Password;
 
-            this.Close();
+            UserModel user = new UserModel();
 
+            bool validated = false;
+
+            await Task.Run(() =>
+            {
+                try
+                {
+                    validated = user.ValidateUsernamePassword(username, password);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            });
+
+            if (validated == true)
+            {
+                HomeWindow home = new HomeWindow();
+                home.Show();
+                this.Close();
+            }
         }
     }
 }

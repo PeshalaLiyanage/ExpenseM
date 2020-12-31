@@ -86,7 +86,7 @@ namespace ExpenseM.Models
             try
             {
                 tempUserData.User.AddUserRow(firstName, lastName, address, phoneNumber, email, password);
-                FileUtilities.GetInstance.WriteToFile(tempUserData, @"C:\Users\pesha\ExpenseM\AdminUserData.xml");
+                FileUtilities.GetInstance.WriteToFile(tempUserData, Properties.Resources.PATH_ADMIN_USER_DATA);
 
                 User adminUser = new User();
 
@@ -96,8 +96,8 @@ namespace ExpenseM.Models
                 adminUser.PhoneNo = phoneNumber;
                 adminUser.Email = email;
                 adminUser.Password = password;
-                adminUser.UserType = "1"; // use an enum for this
-                adminUser.CreatedAt = "DateTime.UtcNow";
+                adminUser.UserType = 1; // use an enum for this
+                adminUser.CreatedAt = DateTime.Now;
 
                 DBConnection.Connection.Users.Add(adminUser);
                 DBConnection.Connection.SaveChanges();
@@ -107,7 +107,7 @@ namespace ExpenseM.Models
             {
                 if (_retryCount < 10)
                 {
-                    tempUserData.ReadXml(@"C:\Users\pesha\ExpenseM\AdminUserData.xml");
+                    tempUserData.ReadXml(Properties.Resources.PATH_ADMIN_USER_DATA);
                     ExpenseMDataSet.UserRow userData = tempUserData.User[0];
 
                     firstName = userData.FirstName;
@@ -127,17 +127,17 @@ namespace ExpenseM.Models
             }
             finally
             {
-                FileUtilities.GetInstance.DeleteFile(@"C:\Users\pesha\ExpenseM\AdminUserData.xml");
+                FileUtilities.GetInstance.DeleteFile(Properties.Resources.PATH_ADMIN_USER_DATA);
             }
         }
 
         public UserModel getTempUserDataFromFile()
         {
-            if (File.Exists(@"C:\Users\pesha\ExpenseM\UserTempData.xml") == true)
+            if (File.Exists(Properties.Resources.PATH_USER_TEMP_DATA) == true)
             {
-                tempUserData.ReadXml(@"C:\Users\pesha\ExpenseM\UserTempData.xml");
+                tempUserData.ReadXml(Properties.Resources.PATH_USER_TEMP_DATA);
                 ExpenseMDataSet.UserRow userData = tempUserData.User[0];
-                Console.WriteLine("this is temp data : " + userData.FirstName);
+                
                 return new UserModel(
                     userData.FirstName,
                     userData.LastName,
@@ -154,10 +154,28 @@ namespace ExpenseM.Models
             {
                 tempUserData.User.Clear();
                 tempUserData.User.AddUserRow(firstName, lastName, address, phoneNumber, email, password);
-                FileUtilities.GetInstance.DeleteFile(@"C:\Users\pesha\ExpenseM\UserTempData.xml");
-                FileUtilities.GetInstance.WriteToFile(tempUserData, @"C:\Users\pesha\ExpenseM\UserTempData.xml");
+                FileUtilities.GetInstance.DeleteFile(Properties.Resources.PATH_USER_TEMP_DATA);
+                FileUtilities.GetInstance.WriteToFile(tempUserData, Properties.Resources.PATH_USER_TEMP_DATA);
             });
 
+        }
+
+
+        public bool ValidateUsernamePassword(String username, String password)
+        {
+            try
+            {
+                dynamic record = DBConnection.Connection.Users.Where(
+                    user => user.Email == username
+                    && user.Password == password
+                    ).FirstOrDefault();
+
+                return record != null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Something went wrong");
+            }
         }
     }
 }

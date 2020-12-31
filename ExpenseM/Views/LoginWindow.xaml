@@ -10,10 +10,15 @@
         Height="450"
         Width="800"
         FontSize="16"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        xmlns:properties="clr-namespace:ExpenseM.Properties"
+        >
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="C:\Users\pesha\Documents\EAD\CW2\repos\MSDocsWPF\MSDocsWPF\watermark.png" />
+        </Grid.Background>
 
-        <Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
             <ColumnDefinition Width="324.8" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
@@ -59,7 +64,8 @@
                  Width="120" 
                  
                  />
-        <PasswordBox Grid.Column="1"
+        <PasswordBox x:Name="PasswordInput"
+                     Grid.Column="1"
                      HorizontalAlignment="Left"
                      Margin="230.2,123,0,0"
                      Grid.Row="1"
