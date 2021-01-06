@@ -61,12 +61,66 @@ namespace ExpenseM.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        internal static string ADDRESS {
+            get {
+                return ResourceManager.GetString("ADDRESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm Password.
+        /// </summary>
+        internal static string CONFIRM_PASSWORD {
+            get {
+                return ResourceManager.GetString("CONFIRM_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        internal static string EMAIL {
+            get {
+                return ResourceManager.GetString("EMAIL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First Name.
+        /// </summary>
+        internal static string FIRST_NAME {
+            get {
+                return ResourceManager.GetString("FIRST_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap IMG_BACKGROUND {
             get {
                 object obj = ResourceManager.GetObject("IMG_BACKGROUND", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Name.
+        /// </summary>
+        internal static string LAST_NAME {
+            get {
+                return ResourceManager.GetString("LAST_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        internal static string PASSWORD {
+            get {
+                return ResourceManager.GetString("PASSWORD", resourceCulture);
             }
         }
         
@@ -85,6 +139,15 @@ namespace ExpenseM.Properties {
         internal static string PATH_USER_TEMP_DATA {
             get {
                 return ResourceManager.GetString("PATH_USER_TEMP_DATA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone Number.
+        /// </summary>
+        internal static string PHONE_NUMBER {
+            get {
+                return ResourceManager.GetString("PHONE_NUMBER", resourceCulture);
             }
         }
     }

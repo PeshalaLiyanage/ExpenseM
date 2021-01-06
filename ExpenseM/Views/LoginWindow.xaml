@@ -15,6 +15,7 @@
         >
     <Grid>
         <Grid.Background>
+            <!--todo-->
             <ImageBrush ImageSource="C:\Users\pesha\Documents\EAD\CW2\repos\MSDocsWPF\MSDocsWPF\watermark.png" />
         </Grid.Background>
 
@@ -94,4 +95,5 @@
                 Height="25" />
 
     </Grid>
+
 </Window>

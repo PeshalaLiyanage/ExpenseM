@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="ExpenseM.UserControls.NavBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ExpenseM.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="299">
+    <Grid Width="269"
+          Height="700">
+        <StackPanel Orientation="Vertical"
+                    Grid.Column="0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Center"
+                    MaxWidth="229"
+                    MinWidth="269"
+                    Background="AliceBlue"
+                    Height="700">
+            <Button Content="Create Contact"
+                   
+                    Margin="0,10,0,0"
+                    VerticalAlignment="Top"
+                    Width="209"
+                    RenderTransformOrigin="-6.549,1.081"
+                    Height="40"
+                    Click="CreateContactBtn_Click" />
+            <Button Content="Button"
+                    Margin="0,10,0,0"
+                    VerticalAlignment="Top"
+                    Width="209"
+                    RenderTransformOrigin="-6.549,1.081"
+                    Height="40" />
+            <Button Content="Button"
+                    Margin="0,10,0,0"
+                    VerticalAlignment="Top"
+                    Width="209"
+                    RenderTransformOrigin="-6.549,1.081"
+                    Height="40" />
+            <Button Content="Button"
+                    Margin="0,10,0,0"
+                    VerticalAlignment="Top"
+                    Width="209"
+                    RenderTransformOrigin="-6.549,1.081"
+                    Height="40" />
+            <Button Content="Button"
+                    Margin="0,10,0,0"
+                    VerticalAlignment="Top"
+                    Width="209"
+                    RenderTransformOrigin="-6.549,1.081"
+                    Height="40"
+                    Grid.Column="0" />
+            <Button Content="Button"
+                    Margin="0,10,0,0"
+                    VerticalAlignment="Top"
+                    Width="209"
+                    RenderTransformOrigin="-6.549,1.081"
+                    Height="40"
+                    Grid.Column="0" />
+            <Button Content="Button"
+                    Margin="0,10,0,0"
+                    VerticalAlignment="Top"
+                    Width="209"
+                    RenderTransformOrigin="-6.549,1.081"
+                    Height="40" />
+        </StackPanel>
+    </Grid>
+</UserControl>

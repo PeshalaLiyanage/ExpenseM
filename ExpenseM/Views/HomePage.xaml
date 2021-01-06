@@ -1,0 +1,82 @@
+﻿<Page xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:ExpenseM.Views"
+      xmlns:UserControls="clr-namespace:ExpenseM.UserControls"
+      x:Class="ExpenseM.Views.HomePage"
+      mc:Ignorable="d"
+      d:DesignHeight="700"
+      d:DesignWidth="1000"
+      FontSize="16"
+      Title="HomePage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="229*" />
+            <ColumnDefinition Width="771*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical"
+                    Grid.Column="0"
+                    VerticalAlignment="Top"
+                    MaxWidth="229"
+                    Background="AliceBlue"
+                    Height="700">
+            <Button Content="Create Contact"
+                    HorizontalAlignment="Left"
+                    Margin="10,10,0,0"
+                    VerticalAlignment="Top"
+                    Width="209"
+                    RenderTransformOrigin="-6.549,1.081"
+                    Height="40"
+                    Click="CreateContactBtn_Click" />
+            <Button Content="Button"
+                    HorizontalAlignment="Left"
+                    Margin="10,10,0,0"
+                    VerticalAlignment="Top"
+                    Width="209"
+                    RenderTransformOrigin="-6.549,1.081"
+                    Height="40" />
+            <Button Content="Button"
+                    HorizontalAlignment="Left"
+                    Margin="10,10,0,0"
+                    VerticalAlignment="Top"
+                    Width="209"
+                    RenderTransformOrigin="-6.549,1.081"
+                    Height="40" />
+            <Button Content="Button"
+                    HorizontalAlignment="Left"
+                    Margin="10,10,0,0"
+                    VerticalAlignment="Top"
+                    Width="209"
+                    RenderTransformOrigin="-6.549,1.081"
+                    Height="40" />
+            <Button Content="Button"
+                    HorizontalAlignment="Left"
+                    Margin="10,10,0,0"
+                    VerticalAlignment="Top"
+                    Width="209"
+                    RenderTransformOrigin="-6.549,1.081"
+                    Height="40"
+                    Grid.Column="0" />
+            <Button Content="Button"
+                    HorizontalAlignment="Left"
+                    Margin="10,10,0,0"
+                    VerticalAlignment="Top"
+                    Width="209"
+                    RenderTransformOrigin="-6.549,1.081"
+                    Height="40"
+                    Grid.Column="0" />
+            <Button Content="Button"
+                    HorizontalAlignment="Left"
+                    Margin="10,10,0,0"
+                    VerticalAlignment="Top"
+                    Width="209"
+                    RenderTransformOrigin="-6.549,1.081"
+                    Height="40" />
+        </StackPanel>
+
+       
+
+    </Grid>
+</Page>

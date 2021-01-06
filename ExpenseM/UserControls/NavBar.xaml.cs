@@ -12,17 +12,27 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ExpenseM.Views;
+using ExpenseM.Utilities;
 
-namespace ExpenseM
+namespace ExpenseM.UserControls
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for NavBar.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class NavBar : UserControl
     {
-        public MainWindow()
+
+        
+        public NavBar()
         {
             InitializeComponent();
+        }
+
+        private void CreateContactBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+            
         }
     }
 }

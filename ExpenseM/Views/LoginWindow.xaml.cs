@@ -26,7 +26,11 @@ namespace ExpenseM.Views
         public LoginWindow()
         {
             InitializeComponent();
-           
+            // remove this values
+            this.UsernameInput.Text = "pesh.com";
+            this.PasswordInput.Password = "123";
+
+
         }
 
 
@@ -59,9 +63,13 @@ namespace ExpenseM.Views
 
             if (validated == true)
             {
-                HomeWindow home = new HomeWindow();
+                MainWindow home = new MainWindow();
                 home.Show();
                 this.Close();
+            }
+            else
+            {
+                MessageBox.Show("User not found for "+username,this.Title);
             }
         }
     }

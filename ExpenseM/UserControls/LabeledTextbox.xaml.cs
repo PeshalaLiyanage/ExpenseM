@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ExpenseM.Utilities;
 
 namespace ExpenseM.UserControls
 {
@@ -21,9 +22,7 @@ namespace ExpenseM.UserControls
     public partial class LabeledTextbox : UserControl
     {
 
-        private String _title = "Title";
-        private String userInputbox = "";
-
+      
 
         public LabeledTextbox()
         {
@@ -31,25 +30,30 @@ namespace ExpenseM.UserControls
             this.DataContext = this;
         }
 
-        //public string Title
-        //{
-        //    get => _title;
-        //    set
-        //    {
-        //        this._title = value;
-        //    }
-        //}
-
-        //public string TextboxTitle
-        //{
-        //    get => userInputbox;
-        //    set
-        //    {
-        //        this.userInputbox = value;
-        //    }
-        //}
+        public string LabelName { get; set; }
+        public string TextboxInput { get; set; }
+        
         public string TitleLength { get; set; }
 
         public int MaxLength { get; set; }
+
+        public LostFocusTextbox lost1 { set; get; }
+
+       
+        private void mybutton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+    private void Textbox_MouseEnter(object sender, MouseEventArgs e)
+    {
+      this.UserInputbox.Background = Brushes.AliceBlue;
     }
+
+    private void Textbox_MouseLeave(object sender, MouseEventArgs e)
+    {
+      this.UserInputbox.Background = Brushes.White;
+
+    }
+  }
 }

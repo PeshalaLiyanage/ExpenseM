@@ -117,9 +117,33 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ADDRESS" xml:space="preserve">
+    <value>Address</value>
+    <comment>Form input labels</comment>
+  </data>
+  <data name="CONFIRM_PASSWORD" xml:space="preserve">
+    <value>Confirm Password</value>
+    <comment>Form input labels</comment>
+  </data>
+  <data name="EMAIL" xml:space="preserve">
+    <value>Email</value>
+    <comment>Form input labels</comment>
+  </data>
+  <data name="FIRST_NAME" xml:space="preserve">
+    <value>First Name</value>
+    <comment>Form input labels</comment>
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="IMG_BACKGROUND" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\watermark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LAST_NAME" xml:space="preserve">
+    <value>Last Name</value>
+    <comment>Form input labels</comment>
+  </data>
+  <data name="PASSWORD" xml:space="preserve">
+    <value>Password</value>
+    <comment>Form input labels</comment>
   </data>
   <data name="PATH_ADMIN_USER_DATA" xml:space="preserve">
     <value>C:\Users\pesha\ExpenseM\AdminUserData.xml</value>
@@ -128,5 +152,9 @@
   <data name="PATH_USER_TEMP_DATA" xml:space="preserve">
     <value>C:\Users\pesha\ExpenseM\UserTempData.xml</value>
     <comment>Path to UserTempData file</comment>
+  </data>
+  <data name="PHONE_NUMBER" xml:space="preserve">
+    <value>Phone Number</value>
+    <comment>Form input labels</comment>
   </data>
 </root>

@@ -80,5 +80,10 @@ namespace ExpenseM.Views
 
             userModel.AddTempUserDataToFile();
         }
+
+        private void Inputbox_MouseEnter(object sender, MouseEventArgs e)
+        {
+            this.FirstNameInputbox.Background = Brushes.Aqua;
+        }
     }
 }
