@@ -13,26 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ExpenseM.Views
+namespace ExpenseM.UserControls
 {
   /// <summary>
-  /// Interaction logic for HomePage.xaml
+  /// Interaction logic for ExpensesAddRow.xaml
   /// </summary>
-  public partial class HomePage : Page
+  public partial class ExpensesAddRow : UserControl
   {
-    public HomePage()
+    public ExpensesAddRow()
     {
       InitializeComponent();
-    }
-
-    private void CreateContactBtn_Click(object sender, RoutedEventArgs e)
-    {
-      this.NavigationService.Navigate(new CreateContactPage());
-    }
-
-    private void NavAddExpenseBtn_Click(object sender, RoutedEventArgs e)
-    {
-      this.NavigationService.Navigate(new AddExpensesPage());
     }
   }
 }

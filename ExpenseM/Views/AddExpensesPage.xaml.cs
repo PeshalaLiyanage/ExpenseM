@@ -16,23 +16,13 @@ using System.Windows.Shapes;
 namespace ExpenseM.Views
 {
   /// <summary>
-  /// Interaction logic for HomePage.xaml
+  /// Interaction logic for AddExpensesPage.xaml
   /// </summary>
-  public partial class HomePage : Page
+  public partial class AddExpensesPage : Page
   {
-    public HomePage()
+    public AddExpensesPage()
     {
       InitializeComponent();
-    }
-
-    private void CreateContactBtn_Click(object sender, RoutedEventArgs e)
-    {
-      this.NavigationService.Navigate(new CreateContactPage());
-    }
-
-    private void NavAddExpenseBtn_Click(object sender, RoutedEventArgs e)
-    {
-      this.NavigationService.Navigate(new AddExpensesPage());
     }
   }
 }

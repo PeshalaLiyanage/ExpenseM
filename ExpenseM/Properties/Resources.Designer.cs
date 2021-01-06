@@ -88,6 +88,15 @@ namespace ExpenseM.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to \A(?:[a-z0-9!#$%&amp;&apos;*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;&apos;*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z.
+        /// </summary>
+        internal static string EMAIL_REGEX {
+            get {
+                return ResourceManager.GetString("EMAIL_REGEX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to First Name.
         /// </summary>
         internal static string FIRST_NAME {
@@ -130,6 +139,15 @@ namespace ExpenseM.Properties {
         internal static string PATH_ADMIN_USER_DATA {
             get {
                 return ResourceManager.GetString("PATH_ADMIN_USER_DATA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to C:\Users\pesha\ExpenseM\ContactUserData.xml.
+        /// </summary>
+        internal static string PATH_CONTACT_USER_DATA {
+            get {
+                return ResourceManager.GetString("PATH_CONTACT_USER_DATA", resourceCulture);
             }
         }
         

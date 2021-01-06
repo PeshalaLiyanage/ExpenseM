@@ -129,6 +129,10 @@
     <value>Email</value>
     <comment>Form input labels</comment>
   </data>
+  <data name="EMAIL_REGEX" xml:space="preserve">
+    <value>\A(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z</value>
+    <comment>Validation</comment>
+  </data>
   <data name="FIRST_NAME" xml:space="preserve">
     <value>First Name</value>
     <comment>Form input labels</comment>
@@ -148,6 +152,10 @@
   <data name="PATH_ADMIN_USER_DATA" xml:space="preserve">
     <value>C:\Users\pesha\ExpenseM\AdminUserData.xml</value>
     <comment>Path to AdminUserData file</comment>
+  </data>
+  <data name="PATH_CONTACT_USER_DATA" xml:space="preserve">
+    <value>C:\Users\pesha\ExpenseM\ContactUserData.xml</value>
+    <comment>Path to ContactUserData file</comment>
   </data>
   <data name="PATH_USER_TEMP_DATA" xml:space="preserve">
     <value>C:\Users\pesha\ExpenseM\UserTempData.xml</value>

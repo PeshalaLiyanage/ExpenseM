@@ -14,10 +14,10 @@
         xmlns:properties="clr-namespace:ExpenseM.Properties"
         >
     <Grid>
-        <Grid.Background>
-            <!--todo-->
+        <!--<Grid.Background>
+            --><!--todo--><!--
             <ImageBrush ImageSource="C:\Users\pesha\Documents\EAD\CW2\repos\MSDocsWPF\MSDocsWPF\watermark.png" />
-        </Grid.Background>
+        </Grid.Background>-->
 
                 <Grid.ColumnDefinitions>
             <ColumnDefinition Width="324.8" />

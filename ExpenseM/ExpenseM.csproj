@@ -65,6 +65,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Entities\ExpenseMDataSet.cs">
       <DependentUpon>ExpenseMDataSet.xsd</DependentUpon>
     </Compile>
@@ -78,7 +79,11 @@
     </Compile>
     <Compile Include="Utilities\Delegates.cs" />
     <Compile Include="Utilities\FileUtilities.cs" />
+    <Compile Include="Utilities\InputValidations.cs" />
     <Compile Include="Utilities\Structures.cs" />
+    <Compile Include="Views\AddExpensesPage.xaml.cs">
+      <DependentUpon>AddExpensesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CreateContactPage.xaml.cs">
       <DependentUpon>CreateContactPage.xaml</DependentUpon>
     </Compile>
@@ -132,6 +137,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\NavBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddExpensesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -26,8 +26,11 @@
             <Button Content="Clear"
                     Margin="0,0,100,0"
                     Width="100"/>
-            <Button Content="Create"
-                    Width="100" />
+            <Button x:Name="CreateContactBtn"
+                    Content="Create"
+                    Width="100"
+                    Click="CreateContactBtn_Click"
+                    IsEnabled="False"/>
         </StackPanel>
 
     </StackPanel>
