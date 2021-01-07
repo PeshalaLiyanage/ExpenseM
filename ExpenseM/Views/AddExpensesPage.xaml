@@ -1,39 +1,114 @@
-﻿<Page x:Class="ExpenseM.Views.AddExpensesPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<Page xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:ExpenseM.Views"
+      xmlns:UserControls="clr-namespace:ExpenseM.UserControls"
+      x:Class="ExpenseM.Views.AddExpensesPage"
       mc:Ignorable="d"
       d:DesignHeight="700"
       d:DesignWidth="1000"
       Title="AddExpensesPage">
 
     <Grid>
-        <StackPanel HorizontalAlignment="Left"
+        <StackPanel HorizontalAlignment="Center"
                     Height="680"
-                    Margin="10,10,0,0"
+                    Margin="0,10,0,0"
                     VerticalAlignment="Top"
                     Width="980"
-                    Name="MainPannel">
+                    x:Name="MainPannel">
             <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Center">
+                        HorizontalAlignment="Center"
+                        Margin="0,0,0,0"
+                        VerticalAlignment="Center">
                 <Label Content="How many records do you want to enter ?"
                        Width="350" />
                 <TextBox Height="23"
                          Width="50"
                          TextWrapping="Wrap"
-                         Margin="0,0,10,0" />
-                <Button Content="Add"
+                         Margin="0,0,10,0"
+                         Text="0"
+                         Name="RowCountBox"/>
+                <Button x:Name="AddRowsBtn"
+                        Content="Add"
                         Width="50"
                         Height="23"
-                        Margin="0,0,10,0"/>
-                <Button Content="Add New Row"
-                        Width="50"
-                        Height="23" />
+                        Margin="0,0,10,0"
+                        Click="AddRowsBtn_Click" />
+                
             </StackPanel>
+            <Separator Height="10"
+                       Margin="0" />
+
+            <!--<StackPanel  Orientation="Horizontal"
+                         HorizontalAlignment="Center">
+                --><!--contact--><!--
+                <ComboBox Width="100"
+                          Margin="0,0,10,0"
+                          Height="23" />
+                --><!--type--><!--
+                <ComboBox Width="100"
+                          Margin="0,0,10,0"
+                          Height="23" />
+                --><!--description--><!--
+                <TextBox Height="23"
+                         Width="200"
+                         TextWrapping="Wrap"
+                         Text="TextBox"
+                         Margin="0,0,10,0" />
+                --><!--amount--><!--
+                <TextBox Height="23"
+                         Width="100"
+                         TextWrapping="Wrap"
+                         Text="TextBox"
+                         Margin="0,0,10,0" />
+                --><!--start--><!--
+                <DatePicker Width="150"
+                            Margin="0,0,10,0"
+                            Height="25" />
+                --><!--end (if recurrent)--><!--
+                <DatePicker Width="150"
+                            Height="25"
+                            Margin="0,0,10,0" />
+            </StackPanel>-->
+        
 
         </StackPanel>
+        <!--not related| todo-->
 
+        <StatusBar x:Name="sbar"
+                   VerticalAlignment="Bottom"
+                   Background="Beige">
+
+            <StatusBarItem>
+                <TextBlock><Run Text="Saving Transactions" /></TextBlock>
+            </StatusBarItem>
+            <StatusBarItem>
+                <ProgressBar Width="100"
+                             Height="20"
+                             x:Name="progressBar1">
+                    <ProgressBar.Triggers>
+                        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="progressBar1"
+                                                     Storyboard.TargetProperty="Value"
+                                                     From="0"
+                                                     To="100"
+                                                     Duration="0:0:5" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </ProgressBar.Triggers>
+                </ProgressBar>
+            </StatusBarItem>
+            <!--<Separator />
+                <StatusBarItem>
+                    <TextBlock>Online</TextBlock>
+                </StatusBarItem>-->
+
+        </StatusBar>
+
+        <!--not related| todo-->
     </Grid>
 </Page>

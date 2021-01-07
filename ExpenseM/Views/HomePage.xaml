@@ -31,7 +31,7 @@
                     Height="40"
                     Click="CreateContactBtn_Click" />
             <Button x:Name="NavAddExpensesBtn"
-                    Content="Button"
+                    Content="Add Expenses"
                     HorizontalAlignment="Left"
                     Margin="10,10,0,0"
                     VerticalAlignment="Top"

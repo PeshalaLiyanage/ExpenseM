@@ -71,6 +71,9 @@
     </Compile>
     <Compile Include="Models\DBConnection.cs" />
     <Compile Include="Models\UserModel.cs" />
+    <Compile Include="UserControls\ExpensesAddRow.xaml.cs">
+      <DependentUpon>ExpensesAddRow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\LabeledTextbox.xaml.cs">
       <DependentUpon>LabeledTextbox.xaml</DependentUpon>
     </Compile>
@@ -132,6 +135,10 @@
     <Compile Include="Entities\User.cs">
       <DependentUpon>ExpenseMDataModel.tt</DependentUpon>
     </Compile>
+    <Page Include="UserControls\ExpensesAddRow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\LabeledTextbox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
