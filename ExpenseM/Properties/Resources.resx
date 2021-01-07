@@ -145,6 +145,9 @@
     <value>Last Name</value>
     <comment>Form input labels</comment>
   </data>
+  <data name="MAXIMUM_RECORDS_MESSAGE" xml:space="preserve">
+    <value>You can add only maximum {0} records at once.</value>
+  </data>
   <data name="PASSWORD" xml:space="preserve">
     <value>Password</value>
     <comment>Form input labels</comment>

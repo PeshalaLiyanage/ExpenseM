@@ -125,6 +125,15 @@ namespace ExpenseM.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can add only maximum {0} records at once..
+        /// </summary>
+        internal static string MAXIMUM_RECORDS_MESSAGE {
+            get {
+                return ResourceManager.GetString("MAXIMUM_RECORDS_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         internal static string PASSWORD {

@@ -14,11 +14,34 @@
         <!--contact-->
         <ComboBox Width="120"
                   Margin="0,0,10,0"
-                  Height="23" />
+                  Height="25"
+                  Name="ContactCombo"
+                  AutomationProperties.HelpText="Select Contact"
+                  SelectionChanged="ContactCombo_SeletctionChanged"
+                  >
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding FirstName}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
         <!--type-->
         <ComboBox Width="100"
                   Margin="0,0,10,0"
-                  Height="23" />
+                  Height="25"
+                  Text="UserType"
+                  Name="TransactionTypeCombo"
+                  SelectionChanged="TransactionTypeCombo_SelectionChanged">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding TransactionType}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
         <!--description-->
         <TextBox Height="23"
                  Width="200"
@@ -26,25 +49,27 @@
                  AcceptsReturn="True"
                  AcceptsTab="True"
                  SpellCheck.IsEnabled="True"
-                 
+                 Name="Description"
                  Margin="0,0,10,0" 
                  />
         <!--amount-->
         <TextBox Height="23"
                  Width="100"
                  TextWrapping="Wrap"
-                 
+                 Name="Amount"
                  Margin="0,0,10,0" />
         <!--start-->
         <DatePicker Width="130"
                     Margin="0,0,10,0"
-                    Height="25" />
+                    Height="25" 
+                    Name="StartDate"
+                    CalendarClosed="StartDate_CalendarClosed" />
         <!--end (if recurrent)-->
         <DatePicker Width="130"
                     Height="25"
                     Margin="0,0,10,0"
-                    
-                    />
+                    Name="EndDate"
+                    CalendarClosed="EndDate_CalendarClosed" />
     </StackPanel>
 
 </UserControl>

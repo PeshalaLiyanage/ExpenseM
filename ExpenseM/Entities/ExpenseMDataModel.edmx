@@ -92,6 +92,7 @@
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="User" Relationship="ExpenseMDataModel.UserTransaction" FromRole="Transaction" ToRole="User" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="true" />
         </EntityType>
         <ComplexType Name="Date">
           <Property Type="String" Name="EndDate" Nullable="false" />

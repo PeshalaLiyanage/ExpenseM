@@ -9,6 +9,8 @@ using ExpenseM.Controllers;
 using ExpenseM.Models;
 using System;
 
+
+// TODO populate contact data when it loading
 namespace ExpenseM.Views
 {
   /// <summary>

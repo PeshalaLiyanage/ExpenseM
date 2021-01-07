@@ -70,6 +70,7 @@
       <DependentUpon>ExpenseMDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Models\DBConnection.cs" />
+    <Compile Include="Models\TransactionModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="UserControls\ExpensesAddRow.xaml.cs">
       <DependentUpon>ExpensesAddRow.xaml</DependentUpon>
@@ -81,6 +82,7 @@
       <DependentUpon>NavBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Delegates.cs" />
+    <Compile Include="Utilities\Enums.cs" />
     <Compile Include="Utilities\FileUtilities.cs" />
     <Compile Include="Utilities\InputValidations.cs" />
     <Compile Include="Utilities\Structures.cs" />

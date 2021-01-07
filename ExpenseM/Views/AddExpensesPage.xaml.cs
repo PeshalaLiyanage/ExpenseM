@@ -22,38 +22,69 @@ namespace ExpenseM.Views
   public partial class AddExpensesPage : Page
   {
 
-    private int totalRowsCount = 0;
+    private int totalRowsCount = 1;
     private const int MaxRowsCount = 12;
+    Button saveBtn = new Button();
 
     List<ExpensesAddRow> labeledTextboxes = new List<ExpensesAddRow>();
     public AddExpensesPage()
     {
       InitializeComponent();
-     //create user control here and after creating it, move it to the user control file(expense add)
-    }
+      //create user control here and after creating it, move it to the user control file(expense add)
+      Thickness thickness = new Thickness();
+      thickness.Top = 10;
+      saveBtn.Content = "Save Records";
+      saveBtn.HorizontalAlignment = HorizontalAlignment.Center;
+      saveBtn.Margin = thickness;
+      saveBtn.Click += SaveBtn_Click;
+      this.AddRows();
 
+    }
     private void AddRowsBtn_Click(object sender, RoutedEventArgs e)
     {
-      int rowsCount = int.Parse(this.RowCountBox.Text);
-     
+      this.AddRows();
+    }
 
-      if (rowsCount<= MaxRowsCount && (totalRowsCount += rowsCount) <= MaxRowsCount)
+    private void AddRows()
+    {
+      int rowsCount = int.Parse(this.RowCountBox.Text);
+      Thickness thickness = new Thickness();
+      thickness.Top = 10;
+      int tempRowCount = rowsCount + totalRowsCount;
+
+      if (rowsCount <= MaxRowsCount && tempRowCount <= MaxRowsCount)
       {
-        //totalRowsCount += rowsCount;
+        totalRowsCount += rowsCount;
         for (int i = 0; i < rowsCount; i++)
         {
           ExpensesAddRow expensesAddRow = new ExpensesAddRow();
-          Thickness thickness = new Thickness();
-          thickness.Top = 10;
+
           expensesAddRow.Margin = thickness;
           this.MainPannel.Children.Add(expensesAddRow);
         }
 
+        if (this.MainPannel.Children.Contains(saveBtn))
+        {
+
+          this.MainPannel.Children.Remove(saveBtn);
+
+        }
+
+        this.MainPannel.Children.Add(saveBtn);
+
       }
       else
       {
-        MessageBox.Show("You can add only maximum 12 records at once.");
+        MessageBox.Show(String.Format(
+          Properties.Resources.MAXIMUM_RECORDS_MESSAGE,
+          MaxRowsCount));
       }
+    }
+
+    private void SaveBtn_Click(object sender, RoutedEventArgs e)
+    {
+
+      
     }
   }
 }

@@ -237,5 +237,37 @@ namespace ExpenseM.Models
 
       return true;
     }
+
+    public List<UserModel> FetchUsers(int type)
+    {
+      try
+      {
+       List<UserModel>  users = new List<UserModel>();
+
+        List<User> records = DBConnection.Connection.Users.Where(
+            user => user.UserType == type
+            ).ToList<User>();
+
+        foreach (dynamic item in records)
+        {
+          users.Add(new UserModel(
+            item.FirstName,
+            item.LastName,
+            item.Address,
+            item.PhoneNo,
+            item.Email,
+            item.UserType 
+            ));
+        }
+
+        return users;
+      }
+      catch (Exception)
+      {
+        throw new Exception("Something went wrong");
+      }
+    }
+
+
   }
 }

@@ -27,51 +27,112 @@
                          Width="50"
                          TextWrapping="Wrap"
                          Margin="0,0,10,0"
-                         Text="0"
-                         Name="RowCountBox"/>
+                         Text="1"
+                         Name="RowCountBox" />
                 <Button x:Name="AddRowsBtn"
                         Content="Add"
                         Width="50"
                         Height="23"
                         Margin="0,0,10,0"
                         Click="AddRowsBtn_Click" />
-                
+
             </StackPanel>
+
             <Separator Height="10"
                        Margin="0" />
 
+            <Grid Width="860">
+                <Grid.Background>
+                    <SolidColorBrush Color="AliceBlue"/>
+                </Grid.Background>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="122*" />
+                    <ColumnDefinition Width="146*" />
+                    <ColumnDefinition Width="187*" />
+                    <ColumnDefinition Width="118*" />
+                    <ColumnDefinition Width="143*" />
+                    <ColumnDefinition Width="143*" />
+                </Grid.ColumnDefinitions>
+                <Label Content="Contact"
+                       Grid.Column="0"
+                       Margin="0,0,0.4,-0.4" />
+                <Label Content="Transaction Type"
+                       Grid.Column="1"
+                       RenderTransformOrigin="0.5,0.5"
+                       Margin="0.6,0,156,-0.4"
+                       Grid.ColumnSpan="2">
+                    <Label.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform />
+                            <SkewTransform />
+                            <RotateTransform Angle="0.049" />
+                            <TranslateTransform />
+                        </TransformGroup>
+                    </Label.RenderTransform>
+                </Label>
+                <Label Content="Description"
+                       Grid.Column="2"
+                       Margin="2.2,0,1,-0.4" />
+                <Label Content="Amount"
+                       Grid.Column="3"
+                       Grid.ColumnSpan="2"
+                       Margin="0,0,142.8,-0.4" />
+                <Label Content="Start Date"
+                       Grid.Column="4"
+                       Grid.ColumnSpan="2"
+                       Margin="0.4,0,143,-0.4" />
+                <Label Content="End Date"
+                       Grid.Column="5"
+                       Margin="0.2,0,26,-0.4" />
+            </Grid>
+            <!--<StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                
+            </StackPanel>-->
+
             <!--<StackPanel  Orientation="Horizontal"
                          HorizontalAlignment="Center">
-                --><!--contact--><!--
+                -->
+            <!--contact-->
+            <!--
                 <ComboBox Width="100"
                           Margin="0,0,10,0"
                           Height="23" />
-                --><!--type--><!--
+                -->
+            <!--type-->
+            <!--
                 <ComboBox Width="100"
                           Margin="0,0,10,0"
                           Height="23" />
-                --><!--description--><!--
+                -->
+            <!--description-->
+            <!--
                 <TextBox Height="23"
                          Width="200"
                          TextWrapping="Wrap"
                          Text="TextBox"
                          Margin="0,0,10,0" />
-                --><!--amount--><!--
+                -->
+            <!--amount-->
+            <!--
                 <TextBox Height="23"
                          Width="100"
                          TextWrapping="Wrap"
                          Text="TextBox"
                          Margin="0,0,10,0" />
-                --><!--start--><!--
+                -->
+            <!--start-->
+            <!--
                 <DatePicker Width="150"
                             Margin="0,0,10,0"
                             Height="25" />
-                --><!--end (if recurrent)--><!--
+                -->
+            <!--end (if recurrent)-->
+            <!--
                 <DatePicker Width="150"
                             Height="25"
                             Margin="0,0,10,0" />
             </StackPanel>-->
-        
 
         </StackPanel>
         <!--not related| todo-->

@@ -17,4 +17,17 @@ namespace ExpenseM.Utilities
         public String Key { get; set; }
         public String LabelName { get; set; }
     }
+
+  public struct TransactionTypes
+  {
+
+    public TransactionTypes(int key, String type)
+    {
+      Key = key;
+      TransactionType = type;
+    }
+
+    public int Key { get; set; }
+    public String TransactionType { get; set; }
+  }
 }

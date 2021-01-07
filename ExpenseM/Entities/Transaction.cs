@@ -22,6 +22,7 @@ namespace ExpenseM.Entities
         public Nullable<System.DateTime> EndDate { get; set; }
         public System.DateTime CreatedAt { get; set; }
         public int UserId { get; set; }
+        public string Description { get; set; }
     
         public virtual User User { get; set; }
     }
