@@ -48,6 +48,8 @@ namespace ExpenseM.Views
     public CreateContactPage()
     {
       InitializeComponent();
+      this.WindowTitle = "Create Contacts";
+
       contact.UserType = 0;
       this.CreateContactBtn.IsEnabled = false;
       foreach (LabelWithKey element in labelNames)

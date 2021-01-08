@@ -39,6 +39,8 @@ namespace ExpenseM.Models
       this.userType = userType;
     }
 
+    public int UserId { get; set; }
+
     public String Password
     {
       get { return password; }
@@ -248,16 +250,19 @@ namespace ExpenseM.Models
             user => user.UserType == type
             ).ToList<User>();
 
-        foreach (dynamic item in records)
+        foreach (User item in records)
         {
-          users.Add(new UserModel(
+          UserModel user = new UserModel(
             item.FirstName,
             item.LastName,
             item.Address,
             item.PhoneNo,
             item.Email,
-            item.UserType 
-            ));
+            item.UserType
+            );
+
+          user.UserId = item.Id;
+          users.Add(user);
         }
 
         return users;
@@ -268,6 +273,11 @@ namespace ExpenseM.Models
       }
     }
 
-
+    public override string ToString()
+    {
+      return this.FirstName;
+    }
   }
+
+  
 }

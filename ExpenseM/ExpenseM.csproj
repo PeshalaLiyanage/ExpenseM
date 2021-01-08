@@ -137,6 +137,9 @@
     <Compile Include="Entities\User.cs">
       <DependentUpon>ExpenseMDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Views\ViewTransactionsPage.xaml.cs">
+      <DependentUpon>ViewTransactionsPage.xaml</DependentUpon>
+    </Compile>
     <Page Include="UserControls\ExpensesAddRow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -170,6 +173,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ViewTransactionsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

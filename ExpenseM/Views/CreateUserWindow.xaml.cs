@@ -18,72 +18,73 @@ using System.IO;
 
 namespace ExpenseM.Views
 {
-    /// <summary>
-    /// Interaction logic for CreateUserWindow.xaml
-    /// </summary>
-    public partial class CreateUserWindow : Window
+  /// <summary>
+  /// Interaction logic for CreateUserWindow.xaml
+  /// </summary>
+  public partial class CreateUserWindow : Window
+  {
+    UserModel userModel;
+    ExpenseMDataSet tempUserData = new ExpenseMDataSet();
+
+    public CreateUserWindow()
     {
-        UserModel userModel;
-        ExpenseMDataSet tempUserData = new ExpenseMDataSet();
+      InitializeComponent();
+      this.Title = "Create User";
 
-        public CreateUserWindow()
-        {
-            InitializeComponent();
+      UserModel tempUserData = new UserModel().getTempUserDataFromFile();
 
-            UserModel tempUserData = new UserModel().getTempUserDataFromFile();
-
-            if (tempUserData != null)
-            {
-                this.FirstNameInputbox.Text = tempUserData.FirstName;
-                this.LastNameInputbox.Text = tempUserData.LastName;
-                this.AddressInputbox.Text = tempUserData.Address;
-                this.PhoneNumberInputbox.Text = tempUserData.PhoneNumber;
-                this.EmailInputbox.Text = tempUserData.Email;
-            }
-        }
-
-        private async void CreateBtn_Click(object sender, RoutedEventArgs e)
-        {
-            userModel = new UserModel(
-                this.FirstNameInputbox.Text,
-                this.LastNameInputbox.Text,
-                this.AddressInputbox.Text,
-                this.PhoneNumberInputbox.Text,
-                this.EmailInputbox.Text, 1
-                );
-
-            userModel.Password = this.PasswordInputbox.Password;
-
-            await Task.Run(() =>
-            {
-                try
-                {
-                    userModel.AddUser();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            });
-
-        }
-
-        private void UserInput_LostFocus(object sender, RoutedEventArgs e)
-        {
-            userModel = new UserModel(
-               this.FirstNameInputbox.Text,
-               this.LastNameInputbox.Text,
-               this.AddressInputbox.Text,
-               this.PhoneNumberInputbox.Text,
-               this.EmailInputbox.Text, 1
-               );
-
-            userModel.AddTempUserDataToFile();
-        }
-
-        private void Inputbox_MouseEnter(object sender, MouseEventArgs e)
-        {
-            this.FirstNameInputbox.Background = Brushes.Aqua;
-        }
+      if (tempUserData != null)
+      {
+        this.FirstNameInputbox.Text = tempUserData.FirstName;
+        this.LastNameInputbox.Text = tempUserData.LastName;
+        this.AddressInputbox.Text = tempUserData.Address;
+        this.PhoneNumberInputbox.Text = tempUserData.PhoneNumber;
+        this.EmailInputbox.Text = tempUserData.Email;
+      }
     }
+
+    private async void CreateBtn_Click(object sender, RoutedEventArgs e)
+    {
+      userModel = new UserModel(
+          this.FirstNameInputbox.Text,
+          this.LastNameInputbox.Text,
+          this.AddressInputbox.Text,
+          this.PhoneNumberInputbox.Text,
+          this.EmailInputbox.Text, 1
+          );
+
+      userModel.Password = this.PasswordInputbox.Password;
+
+      await Task.Run(() =>
+      {
+        try
+        {
+          userModel.AddUser();
+        }
+        catch (Exception ex)
+        {
+          MessageBox.Show(ex.Message);
+        }
+      });
+
+    }
+
+    private void UserInput_LostFocus(object sender, RoutedEventArgs e)
+    {
+      userModel = new UserModel(
+         this.FirstNameInputbox.Text,
+         this.LastNameInputbox.Text,
+         this.AddressInputbox.Text,
+         this.PhoneNumberInputbox.Text,
+         this.EmailInputbox.Text, 1
+         );
+
+      userModel.AddTempUserDataToFile();
+    }
+
+    private void Inputbox_MouseEnter(object sender, MouseEventArgs e)
+    {
+      this.FirstNameInputbox.Background = Brushes.Aqua;
+    }
+  }
 }

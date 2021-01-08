@@ -2,7 +2,7 @@
 {
 
 
-    partial class ExpenseMDataSet
-    {
-    }
+  partial class ExpenseMDataSet
+  {
+  }
 }

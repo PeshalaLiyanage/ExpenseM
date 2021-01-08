@@ -160,6 +160,10 @@
     <value>C:\Users\pesha\ExpenseM\ContactUserData.xml</value>
     <comment>Path to ContactUserData file</comment>
   </data>
+  <data name="PATH_TRANSACTION_TEMP_DATA" xml:space="preserve">
+    <value>C:\Users\pesha\ExpenseM\TransactionTempData.xml</value>
+    <comment>Path to TransactionData file</comment>
+  </data>
   <data name="PATH_USER_TEMP_DATA" xml:space="preserve">
     <value>C:\Users\pesha\ExpenseM\UserTempData.xml</value>
     <comment>Path to UserTempData file</comment>

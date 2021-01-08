@@ -23,6 +23,7 @@ namespace ExpenseM.Views
     public HomePage()
     {
       InitializeComponent();
+      this.WindowTitle = "ExpenseM";
     }
 
     private void CreateContactBtn_Click(object sender, RoutedEventArgs e)
@@ -33,6 +34,11 @@ namespace ExpenseM.Views
     private void NavAddExpenseBtn_Click(object sender, RoutedEventArgs e)
     {
       this.NavigationService.Navigate(new AddExpensesPage());
+    }
+
+    private void NavViewTransactions_Click(object sender, RoutedEventArgs e)
+    {
+      this.NavigationService.Navigate(new ViewTransactionsPage());
     }
   }
 }

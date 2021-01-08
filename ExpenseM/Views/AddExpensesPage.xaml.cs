@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ExpenseM.UserControls;
+using ExpenseM.Models;
 
 namespace ExpenseM.Views
 {
@@ -26,11 +27,14 @@ namespace ExpenseM.Views
     private const int MaxRowsCount = 12;
     Button saveBtn = new Button();
 
-    List<ExpensesAddRow> labeledTextboxes = new List<ExpensesAddRow>();
+    List<ExpensesAddRow> expensesAddRows = new List<ExpensesAddRow>();
+
+
     public AddExpensesPage()
     {
       InitializeComponent();
-      //create user control here and after creating it, move it to the user control file(expense add)
+      this.WindowTitle = "Add Transactions";
+
       Thickness thickness = new Thickness();
       thickness.Top = 10;
       saveBtn.Content = "Save Records";
@@ -38,6 +42,7 @@ namespace ExpenseM.Views
       saveBtn.Margin = thickness;
       saveBtn.Click += SaveBtn_Click;
       this.AddRows();
+
 
     }
     private void AddRowsBtn_Click(object sender, RoutedEventArgs e)
@@ -60,6 +65,8 @@ namespace ExpenseM.Views
           ExpensesAddRow expensesAddRow = new ExpensesAddRow();
 
           expensesAddRow.Margin = thickness;
+          expensesAddRow.SelectedStartDate = DateTime.Now;
+          expensesAddRows.Add(expensesAddRow);
           this.MainPannel.Children.Add(expensesAddRow);
         }
 
@@ -81,10 +88,42 @@ namespace ExpenseM.Views
       }
     }
 
-    private void SaveBtn_Click(object sender, RoutedEventArgs e)
-    {
+    List<TransactionModel> transactionsList;
 
-      
+    private async void SaveBtn_Click(object sender, RoutedEventArgs e)
+    {
+      try
+      {
+        transactionsList = new List<TransactionModel>();
+        foreach (ExpensesAddRow row in expensesAddRows)
+        {
+          transactionsList.Add(new TransactionModel(
+            row.SelectedContact,
+            int.Parse(row.Amount),
+            row.SelectedTransactionType.Key,
+            row.SelectedEndDate == null ? 0 : 1,
+            row.Description,
+            row.SelectedStartDate,
+            row.SelectedEndDate
+            ));
+        }
+        TransactionModel transactionModel = new TransactionModel();
+        bool result = await Task.Run(() => transactionModel.SaveTransactions(transactionsList));
+
+
+        if (result)
+        {
+          MessageBox.Show("Saved");
+        }
+        else
+        {
+          MessageBox.Show("Failed");
+        }
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show(ex.Message);
+      }
     }
   }
 }

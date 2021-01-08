@@ -29,5 +29,10 @@ namespace ExpenseM.Utilities
 
     public int Key { get; set; }
     public String TransactionType { get; set; }
+
+    public override string ToString()
+    {
+      return this.TransactionType;
+    }
   }
 }

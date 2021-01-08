@@ -39,13 +39,15 @@
                     RenderTransformOrigin="-6.549,1.081"
                     Height="40"
                     Click="NavAddExpenseBtn_Click" />
-            <Button Content="Button"
+            <Button x:Name="ViewTransactionsBtn"
+                    Content="View Transactions"
                     HorizontalAlignment="Left"
                     Margin="10,10,0,0"
                     VerticalAlignment="Top"
                     Width="209"
                     RenderTransformOrigin="-6.549,1.081"
-                    Height="40" />
+                    Height="40"
+                    Click="NavViewTransactions_Click" />
             <Button Content="Button"
                     HorizontalAlignment="Left"
                     Margin="10,10,0,0"

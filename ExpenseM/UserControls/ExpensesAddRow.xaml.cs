@@ -24,43 +24,63 @@ namespace ExpenseM.UserControls
   {
     UserModel contact = new UserModel();
     List<UserModel> contacts = new List<UserModel>();
-
     public dynamic SelectedContact { get; set; }
     public dynamic SelectedTransactionType { get; set; }
+ 
 
-    public DateTime SelectedStartDate { get; set; }
-    public DateTime SelectedEndDate { get; set; }
+    public string Amount { get; set; }
+    public string Description { get; set; }
+
+    private DateTime startDate = DateTime.Today;
+
+    public DateTime SelectedStartDate
+    {
+      get { return startDate; }
+      set { startDate = value; }
+    }
+
+    private dynamic endDate = null;
+
+    public dynamic SelectedEndDate
+    {
+      get { return endDate; }
+      set { endDate = value; }
+    }
+
+
+
     public ExpensesAddRow()
     {
       InitializeComponent();
-      //this.ContactCombo.ItemsSource = typeof(Colors).GetProperties();
+    
       this.ContactCombo.ItemsSource = contact.FetchUsers((int)UserTypes.Contact);
       this.TransactionTypeCombo.ItemsSource = new List<TransactionTypes>()
       {
-        new TransactionTypes(0,"Revenue"),
+        new TransactionTypes(0,"Income"),
         new TransactionTypes(1, "Expense")
       };
-      
+      this.DataContext = this;
+
     }
 
-    private void ContactCombo_SeletctionChanged(object sender, SelectionChangedEventArgs e)
-    {
-      this.SelectedContact = this.ContactCombo.SelectedItem;
-    }
+    //private void ContactCombo_SeletctionChanged(object sender, SelectionChangedEventArgs e)
+    //{
+    //  this.SelectedContact = this.ContactCombo.SelectedItem;
+    //}
 
-    private void TransactionTypeCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-      this.SelectedTransactionType = this.TransactionTypeCombo.SelectedItem;
-    }
+    //private void TransactionTypeCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    //{
+    //  this.SelectedTransactionType = this.TransactionTypeCombo.SelectedItem;
+    //}
 
-    private void StartDate_CalendarClosed(object sender, RoutedEventArgs e)
-    {
-      this.SelectedStartDate = this.StartDate.SelectedDate.Value;
-    }
+    //private void StartDate_CalendarClosed(object sender, RoutedEventArgs e)
+    //{
+    // // this.SelectedStartDate = this.StartDate.SelectedDate.Value;
+    //}
 
-    private void EndDate_CalendarClosed(object sender, RoutedEventArgs e)
-    {
-      this.SelectedEndDate = this.EndDate.SelectedDate.Value;
-    }
+    //private void EndDate_CalendarClosed(object sender, RoutedEventArgs e)
+    //{
+    // // this.SelectedEndDate = this.EndDate.SelectedDate == null? DateTime.Now: this.EndDate.SelectedDate.Value;
+    //}
   }
 }

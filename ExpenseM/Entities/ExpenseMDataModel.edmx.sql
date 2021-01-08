@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/30/2020 18:57:43
+-- Date Created: 01/08/2021 09:07:37
 -- Generated from EDMX file: C:\Users\pesha\Documents\EAD\CW2\repos\ExpenseM\ExpenseM\Entities\ExpenseMDataModel.edmx
 -- --------------------------------------------------
 
@@ -59,7 +59,8 @@ CREATE TABLE [dbo].[Transactions] (
     [StartDate] datetime  NOT NULL,
     [EndDate] datetime  NULL,
     [CreatedAt] datetime  NOT NULL,
-    [UserId] int  NOT NULL
+    [UserId] int  NOT NULL,
+    [Description] nvarchar(max)  NULL
 );
 GO
 

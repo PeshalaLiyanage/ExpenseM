@@ -161,6 +161,15 @@ namespace ExpenseM.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to C:\Users\pesha\ExpenseM\TransactionTempData.xml.
+        /// </summary>
+        internal static string PATH_TRANSACTION_TEMP_DATA {
+            get {
+                return ResourceManager.GetString("PATH_TRANSACTION_TEMP_DATA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to C:\Users\pesha\ExpenseM\UserTempData.xml.
         /// </summary>
         internal static string PATH_USER_TEMP_DATA {

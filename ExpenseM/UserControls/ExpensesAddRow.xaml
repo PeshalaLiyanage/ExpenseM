@@ -9,21 +9,23 @@
 
     <StackPanel  Orientation="Horizontal"
                  HorizontalAlignment="Center"
-                
                  Width="860">
+        <StackPanel.Resources>
+            <local:ExpensesAddRow x:Key="ExpensesRowSource" />
+        </StackPanel.Resources>
         <!--contact-->
         <ComboBox Width="120"
                   Margin="0,0,10,0"
                   Height="25"
                   Name="ContactCombo"
                   AutomationProperties.HelpText="Select Contact"
-                  SelectionChanged="ContactCombo_SeletctionChanged"
-                  >
+                  IsReadOnly="True"
+                  IsEditable="True"
+                  Text="Name"
+                  SelectedItem="{Binding SelectedContact, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding FirstName}" />
-                    </StackPanel>
+                    <TextBlock Text="{Binding FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
@@ -31,14 +33,17 @@
         <ComboBox Width="100"
                   Margin="0,0,10,0"
                   Height="25"
-                  Text="UserType"
+                  Text="Type"
                   Name="TransactionTypeCombo"
-                  SelectionChanged="TransactionTypeCombo_SelectionChanged">
+                  IsReadOnly="True"
+                  IsEditable="True"
+                  
+                  SelectedItem="{Binding SelectedTransactionType, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding TransactionType}" />
-                    </StackPanel>
+
+                    <TextBlock Text="{Binding TransactionType}" />
+
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
@@ -49,27 +54,31 @@
                  AcceptsReturn="True"
                  AcceptsTab="True"
                  SpellCheck.IsEnabled="True"
-                 Name="Description"
-                 Margin="0,0,10,0" 
-                 />
+                 Name="DescriptionBox"
+                 Text="{Binding Description, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                 Margin="0,0,10,0" />
         <!--amount-->
         <TextBox Height="23"
                  Width="100"
                  TextWrapping="Wrap"
-                 Name="Amount"
-                 Margin="0,0,10,0" />
+                 Name="AmountBox"
+                 Margin="0,0,10,0"
+                 Text="{Binding Amount, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
         <!--start-->
         <DatePicker Width="130"
                     Margin="0,0,10,0"
-                    Height="25" 
+                    Height="25"
                     Name="StartDate"
-                    CalendarClosed="StartDate_CalendarClosed" />
+                    SelectedDate="{Binding Path=SelectedStartDate ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+
+        </DatePicker>
         <!--end (if recurrent)-->
         <DatePicker Width="130"
                     Height="25"
                     Margin="0,0,10,0"
                     Name="EndDate"
-                    CalendarClosed="EndDate_CalendarClosed" />
+                    Text="End Date"
+                    SelectedDate="{Binding Path=SelectedEndDate ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
     </StackPanel>
 
 </UserControl>
