@@ -9,9 +9,8 @@ using ExpenseM.Entities;
 
 namespace ExpenseM.Models
 {
-  class TransactionModel
+  public class TransactionModel
   {
-
     public UserModel Contact { get; set; }
     public int Amount { get; set; }
     public int TransactionType { get; set; }
@@ -110,6 +109,40 @@ namespace ExpenseM.Models
 
 
 
+    }
+
+    public List<TransactionModel> getTransactions()
+    {
+      try
+      {
+
+        List<TransactionModel> transactionList = new List<TransactionModel>();
+
+        dynamic records = DBConnection.Connection.Transactions.ToList();
+
+        foreach (Transaction item in records)
+        {
+
+          UserModel contact = new UserModel();
+          
+          transactionList.Add(new TransactionModel(
+            contact.GetUserById(item.UserId),
+            item.Amount,
+            item.TransactionTyoe,
+            item.RecurrentStatus,
+            item.Description,
+            item.StartDate,
+            item.EndDate
+            ));
+        }
+
+        return transactionList;
+
+      }
+      catch(Exception ex)
+      {
+        throw ex;
+      }
     }
   }
 }

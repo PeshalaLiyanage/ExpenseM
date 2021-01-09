@@ -11,7 +11,7 @@ using ExpenseM.Views;
 
 namespace ExpenseM.Models
 {
-  class UserModel
+  public class UserModel
   {
     private String firstName;
     private String lastName;
@@ -137,55 +137,55 @@ namespace ExpenseM.Models
     }
 
 
-    public void _AddUser()
-    {
-      try
-      {
-        tempUserData.User.AddUserRow(firstName, lastName, address, phoneNumber, email, password);
-        FileUtilities.GetInstance.WriteToFile(tempUserData, Properties.Resources.PATH_ADMIN_USER_DATA);
+    //public void _AddUser()
+    //{
+    //  try
+    //  {
+    //    tempUserData.User.AddUserRow(firstName, lastName, address, phoneNumber, email, password);
+    //    FileUtilities.GetInstance.WriteToFile(tempUserData, Properties.Resources.PATH_ADMIN_USER_DATA);
 
-        User adminUser = new User();
+    //    User adminUser = new User();
 
-        adminUser.FirstName = firstName;
-        adminUser.LastName = lastName;
-        adminUser.Address = address;
-        adminUser.PhoneNo = phoneNumber;
-        adminUser.Email = email;
-        adminUser.Password = password;
-        adminUser.UserType = 1; // use an enum for this
-        adminUser.CreatedAt = DateTime.Now;
+    //    adminUser.FirstName = firstName;
+    //    adminUser.LastName = lastName;
+    //    adminUser.Address = address;
+    //    adminUser.PhoneNo = phoneNumber;
+    //    adminUser.Email = email;
+    //    adminUser.Password = password;
+    //    adminUser.UserType = 1; // use an enum for this
+    //    adminUser.CreatedAt = DateTime.Now;
 
-        DBConnection.Connection.Users.Add(adminUser);
-        DBConnection.Connection.SaveChanges();
+    //    DBConnection.Connection.Users.Add(adminUser);
+    //    DBConnection.Connection.SaveChanges();
 
-      }
-      catch (Exception e)
-      {
-        if (_retryCount < 10)
-        {
-          tempUserData.ReadXml(Properties.Resources.PATH_ADMIN_USER_DATA);
-          ExpenseMDataSet.UserRow userData = tempUserData.User[0];
+    //  }
+    //  catch (Exception e)
+    //  {
+    //    if (_retryCount < 10)
+    //    {
+    //      tempUserData.ReadXml(Properties.Resources.PATH_ADMIN_USER_DATA);
+    //      ExpenseMDataSet.UserRow userData = tempUserData.User[0];
 
-          firstName = userData.FirstName;
-          lastName = userData.LastName;
-          address = userData.Address;
-          phoneNumber = userData.PhoneNumber;
-          email = userData.Email;
-          password = userData.Password;
+    //      firstName = userData.FirstName;
+    //      lastName = userData.LastName;
+    //      address = userData.Address;
+    //      phoneNumber = userData.PhoneNumber;
+    //      email = userData.Email;
+    //      password = userData.Password;
 
-          _retryCount++;
-          AddUser();
-        }
-        else
-        {
-          throw new Exception("User " + firstName + " saving failed");
-        }
-      }
-      finally
-      {
-        FileUtilities.GetInstance.DeleteFile(Properties.Resources.PATH_ADMIN_USER_DATA);
-      }
-    }
+    //      _retryCount++;
+    //      AddUser();
+    //    }
+    //    else
+    //    {
+    //      throw new Exception("User " + firstName + " saving failed");
+    //    }
+    //  }
+    //  finally
+    //  {
+    //    FileUtilities.GetInstance.DeleteFile(Properties.Resources.PATH_ADMIN_USER_DATA);
+    //  }
+    //}
 
     public UserModel getTempUserDataFromFile()
     {
@@ -277,7 +277,35 @@ namespace ExpenseM.Models
     {
       return this.FirstName;
     }
+
+    public UserModel GetUserById(int userId)
+    {
+      try
+      {
+        User record = DBConnection.Connection.Users.Where(
+            user => user.Id == userId
+            ).FirstOrDefault();
+
+        UserModel userModel = new UserModel(
+          record.FirstName,
+          record.LastName,
+          record.Address,
+          record.PhoneNo,
+          record.Email,
+          record.UserType
+          );
+
+        return userModel;
+      }
+      catch (Exception)
+      {
+        throw new Exception("Something went wrong");
+      }
+    }
   }
 
-  
+ 
+
+
+
 }

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ExpenseM.Models;
 
 namespace ExpenseM.Views
 {
@@ -24,6 +25,16 @@ namespace ExpenseM.Views
     {
       InitializeComponent();
       this.WindowTitle = "Transactions";
+      this.DataContext = this;
+      TransactionModel transactionModel = new TransactionModel();
+      TransactionList= transactionModel.getTransactions();
     }
+
+    public List<TransactionModel> TransactionList { get; set; }
+
+
+
+
+
   }
 }

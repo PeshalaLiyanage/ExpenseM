@@ -57,9 +57,14 @@
         <Grid Grid.Row="1">
             <DataGrid HorizontalAlignment="Center"
                       Height="500"
-                      
                       VerticalAlignment="Top"
-                      Width="900" />
+                      Width="900"
+                      ItemsSource="{Binding TransactionList,Mode=OneWay}"
+                      Name="TransactionsDataGrid"
+                      CanUserAddRows="False"
+                      IsReadOnly="True" 
+                      AlternatingRowBackground="AliceBlue"
+                      />
 
         </Grid>
     </Grid>
