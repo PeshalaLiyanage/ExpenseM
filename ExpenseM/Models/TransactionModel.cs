@@ -13,7 +13,7 @@ namespace ExpenseM.Models
   {
     public UserModel Contact { get; set; }
     public int Amount { get; set; }
-    public int TransactionType { get; set; }
+    public EnumTransactionType TransactionType { get; set; }
     public int RecurrentStatus { get; set; }
     public string Description { get; set; }
     public DateTime StartDate { get; set; }
@@ -32,7 +32,7 @@ namespace ExpenseM.Models
     {
     }
 
-    public TransactionModel(UserModel contact, int amount, int transactionType, int recurrentStatus, string description, DateTime startDate, dynamic endDate)
+    public TransactionModel(UserModel contact, int amount, EnumTransactionType transactionType, int recurrentStatus, string description, DateTime startDate, dynamic endDate)
     {
       Contact = contact;
       Amount = amount;
@@ -71,7 +71,9 @@ namespace ExpenseM.Models
           DBConnection.Connection.Transactions.Add(transaction);
         }
 
-        FileUtilities.GetInstance.WriteToFile(tempTransactionData, Properties.Resources.PATH_TRANSACTION_TEMP_DATA);
+        //TODO
+        //tempTransactionData.Transaction.WriteXml(Properties.Resources.PATH_TRANSACTION_TEMP_DATA);
+        // FileUtilities.GetInstance.WriteToFile(tempTransactionData, Properties.Resources.PATH_TRANSACTION_TEMP_DATA);
 
 
 
@@ -83,6 +85,7 @@ namespace ExpenseM.Models
 
       catch (Exception ex)
       {
+
         tempTransactionData.ReadXml(Properties.Resources.PATH_TRANSACTION_TEMP_DATA);
         //ExpenseMDataSet.UserRow userData = tempTransactionData.User[0];
         ExpenseMDataSet.TransactionDataTable transactionRows = tempTransactionData.Transaction;
@@ -111,24 +114,52 @@ namespace ExpenseM.Models
 
     }
 
-    public List<TransactionModel> getTransactions()
+    public List<TransactionModel> getTransactions(DateTime fromDate = default(DateTime), DateTime toDate = default(DateTime))
     {
       try
       {
-
+        Console.WriteLine("====start date:"+fromDate);
+        Console.WriteLine("====end date:"+toDate);
+        Console.WriteLine("====default date:"+ default(DateTime));
         List<TransactionModel> transactionList = new List<TransactionModel>();
 
-        dynamic records = DBConnection.Connection.Transactions.ToList();
+        //fromDate = new DateTime(2021,01,10);
+        //toDate = new DateTime(2021,01,14);
+
+        if (fromDate != default(DateTime) && toDate != default(DateTime))
+        {
+          Console.WriteLine("-----------fuck-----------");
+        }
+
+        dynamic records = fromDate != default(DateTime) && toDate != default(DateTime)
+          ? DBConnection.Connection.Transactions
+          .Where(
+          transaction => transaction.StartDate >= fromDate
+          && transaction.StartDate <= toDate
+          ).ToList()
+          : fromDate != default(DateTime)
+          ? DBConnection.Connection.Transactions
+          .Where(
+          transaction => transaction.StartDate >= fromDate
+          ).ToList()
+          : toDate != default(DateTime) ?
+           DBConnection.Connection.Transactions
+           .Where(
+          transaction => transaction.StartDate <= toDate
+          ).ToList()
+          : DBConnection.Connection.Transactions.ToList();
+
+        Console.WriteLine("============count =: ", records);
 
         foreach (Transaction item in records)
         {
 
           UserModel contact = new UserModel();
-          
+
           transactionList.Add(new TransactionModel(
             contact.GetUserById(item.UserId),
             item.Amount,
-            item.TransactionTyoe,
+            (EnumTransactionType)item.TransactionTyoe,
             item.RecurrentStatus,
             item.Description,
             item.StartDate,
@@ -139,7 +170,7 @@ namespace ExpenseM.Models
         return transactionList;
 
       }
-      catch(Exception ex)
+      catch (Exception ex)
       {
         throw ex;
       }

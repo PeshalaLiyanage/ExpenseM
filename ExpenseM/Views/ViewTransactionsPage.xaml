@@ -4,6 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:ExpenseM.Views"
+      xmlns:sysen="clr-namespace:System;assembly=mscorlib"
+      xmlns:ut="clr-namespace:ExpenseM.Utilities"
       mc:Ignorable="d"
       d:DesignHeight="450"
       d:DesignWidth="800"
@@ -22,6 +24,14 @@
             <Setter Property="VerticalAlignment"
                     Value="Center" />
         </Style>
+
+        <ObjectDataProvider x:Key="TransactionTypeProvider"
+                            MethodName="GetTransactionType"
+                            ObjectType="{x:Type sysen:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="ut:EnumTransactionType" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
     </Page.Resources>
 
     <Grid>
@@ -44,13 +54,17 @@
                          Orientation="Vertical"
                          HorizontalAlignment="Center">
                 <Label Content="From" />
-                <DatePicker Grid.Column="2" />
+                <DatePicker x:Name="StartDatePicker"
+                            Grid.Column="2"
+                            CalendarClosed="SetStartDate" />
             </StackPanel>
             <StackPanel  Grid.Column="3"
                          Orientation="Vertical"
                          HorizontalAlignment="Center">
                 <Label Content="To" />
-                <DatePicker Grid.Column="3" />
+                <DatePicker x:Name="EndDatePicker"
+                            Grid.Column="3"
+                            CalendarClosed="SetEndDate" />
             </StackPanel>
 
         </Grid>
@@ -59,12 +73,51 @@
                       Height="500"
                       VerticalAlignment="Top"
                       Width="900"
-                      ItemsSource="{Binding TransactionList,Mode=OneWay}"
+                      ItemsSource="{Binding TransactionList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                       Name="TransactionsDataGrid"
                       CanUserAddRows="False"
-                      IsReadOnly="True" 
+                      IsReadOnly="True"
                       AlternatingRowBackground="AliceBlue"
-                      />
+                      AutoGenerateColumns="False"
+                      >
+
+                <DataGrid.Columns>
+
+                    <DataGridTemplateColumn Header="Contact"
+                                            Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Contact.FirstName}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Amount"
+                                        Width="*"
+                                        Binding="{Binding Path=Amount,StringFormat='${0}'}" />
+                    <DataGridTextColumn Header="Type"
+                                        Width="*"
+                                        Binding="{Binding Path=TransactionType}" />
+                    <DataGridTextColumn Header="Description"
+                                        Width="*"
+                                        Binding="{Binding Path=Description}" />
+                    <DataGridTemplateColumn Header="Start Date"
+                                            Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=StartDate,StringFormat=d}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="End Date" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=EndDate,StringFormat=d}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
 
         </Grid>
     </Grid>

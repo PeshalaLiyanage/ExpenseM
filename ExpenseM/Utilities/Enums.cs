@@ -6,9 +6,17 @@ using System.Threading.Tasks;
 
 namespace ExpenseM.Utilities
 {
-public enum UserTypes
+  public enum UserTypes
   {
     Contact,
     Admin
   }
+
+
+  public enum EnumTransactionType
+  {
+    Income,
+    Expense
+  }
 }
+

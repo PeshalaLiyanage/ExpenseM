@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ExpenseM.UserControls;
 using ExpenseM.Models;
+using ExpenseM.Utilities;
 
 namespace ExpenseM.Views
 {
@@ -100,7 +101,7 @@ namespace ExpenseM.Views
           transactionsList.Add(new TransactionModel(
             row.SelectedContact,
             int.Parse(row.Amount),
-            row.SelectedTransactionType.Key,
+            (EnumTransactionType)row.SelectedTransactionType.Key,
             row.SelectedEndDate == null ? 0 : 1,
             row.Description,
             row.SelectedStartDate,
