@@ -59,60 +59,79 @@
 
         </StackPanel>
 
-        <StackPanel Grid.Column="1"
-                    Orientation="Vertical"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top">
-            <Label Content="{Binding FINANCIAL_STATUS, Source={StaticResource ResourceKey=ApplicationResources}}"
-                   HorizontalAlignment="Center"
-                   Margin="0,50,0,50"
-                   FontSize="25" />
-            <StackPanel Orientation="Horizontal"
-                        Margin="0,0,0,50">
+        <Grid Grid.Column="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition  Height="50" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0"
+                        Orientation="Vertical"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top">
+                <Label Content="{Binding FINANCIAL_STATUS, Source={StaticResource ResourceKey=ApplicationResources}}"
+                       HorizontalAlignment="Center"
+                       Margin="0,50,0,50"
+                       FontSize="25" />
                 <StackPanel Orientation="Horizontal"
+                            Margin="0,0,0,50">
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center">
+                        <Label Content="From"
+                               Width="50" />
+                        <DatePicker Width="200"
+                                    Name="FromDatePicker"
+                                    CalendarClosed="FromDatePicker_CalendarClosed"
+                                    DisplayDateEnd="{Binding ToDate}"
+                                    SelectedDate="{Binding FromDate, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+
+                        <Label Content="To"
+                               Width="25"
+                               Margin="30,0,10,0" />
+                        <DatePicker Width="200"
+                                    Name="ToDatePicker"
+                                    CalendarClosed="ToDatePicker_CalendarClosed"
+                                    DisplayDateStart="{Binding FromDate}"
+                                    SelectedDate="{Binding ToDate, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical"
                             HorizontalAlignment="Center">
-                    <Label Content="From"
-                           Width="50" />
-                    <DatePicker Width="200"
-                                Name="FromDatePicker"
-                                CalendarClosed="FromDatePicker_CalendarClosed"
-                                DisplayDateEnd="{Binding ToDate}"
-                                SelectedDate="{Binding FromDate, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-
-                    <Label Content="To"
-                           Width="25"
-                           Margin="30,0,10,0" />
-                    <DatePicker Width="200"
-                                Name="ToDatePicker"
-                                CalendarClosed="ToDatePicker_CalendarClosed"
-                                DisplayDateStart="{Binding FromDate}"
-                                SelectedDate="{Binding ToDate, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
-                </StackPanel>
-            </StackPanel>
-
-            <StackPanel Orientation="Vertical"
-                        HorizontalAlignment="Center">
-                <StackPanel Orientation="Horizontal"
-                            Margin="0,0,0,20">
-                    <Label Content="{Binding TOTAL_INCOME, Source={StaticResource ResourceKey=ApplicationResources}}"
-                           Width="120"
-                           Margin="0,0,50,0" />
-                    <TextBox Text="{Binding TotalIncome}"
-                             Width="120"
-                             IsReadOnly="True" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="{Binding TOTAL_EXPENSES, Source={StaticResource ResourceKey=ApplicationResources}}"
-                           Width="120"
-                           Margin="0,0,50,0" />
-                    <TextBox Text="{Binding TotalExpenses}"
-                             Width="120"
-                             IsReadOnly="True" />
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,0,0,20">
+                        <Label Content="{Binding TOTAL_INCOME, Source={StaticResource ResourceKey=ApplicationResources}}"
+                               Width="120"
+                               Margin="0,0,50,0" />
+                        <TextBox Text="{Binding TotalIncome,StringFormat='${0}'}"
+                                 Width="120"
+                                 IsReadOnly="True" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{Binding TOTAL_EXPENSES, Source={StaticResource ResourceKey=ApplicationResources}}"
+                               Width="120"
+                               Margin="0,0,50,0" />
+                        <TextBox Text="{Binding TotalExpenses,StringFormat='${0}'}"
+                                 Width="120"
+                                 IsReadOnly="True" />
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
-        </StackPanel>
+        </Grid>
+        <StatusBar Grid.Column="1"
+                   Grid.Row="0"
+                   HorizontalAlignment="Left"
+                   Height="41"
+                   VerticalAlignment="Bottom"
+                   Width="771">
+
+            <TextBlock Text="Status : " />
+
+            <StatusBarItem Content="{Binding StatusMessage}" />
+        </StatusBar>
 
     </Grid>
 </Page>

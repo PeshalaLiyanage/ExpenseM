@@ -28,6 +28,7 @@ namespace ExpenseM.Views
       InitializeComponent();
       this.WindowTitle = "ExpenseM";
       this.DataContext = this;
+      CalculateFInancialStatus();
     }
 
     public DateTime FromDate { get; set; } = DateUtilities.GetInstance.CurrentMonthStartDate();
@@ -35,6 +36,7 @@ namespace ExpenseM.Views
 
     public int TotalExpenses { get; set; }
     public int TotalIncome { get; set; }
+    public string StatusMessage { get; set; } = "Ready";
 
     public event PropertyChangedEventHandler PropertyChanged;
 
@@ -72,10 +74,65 @@ namespace ExpenseM.Views
 
     }
 
-    public List<TransactionModel> TransactionList { get; set; }
-    public void CalculateFInancialStatus()
+    TransactionModel transactionModel = new TransactionModel();
+    public List<TransactionModel> CommonTransactionList { get; set; }
+    public List<TransactionModel> RecurringTransactionList { get; set; }
+    private void CalculateFInancialStatus()
     {
+      CommonTransactionList = FilterOneTimeTransactions(transactionModel.getTransactions(FromDate, ToDate));
+      RecurringTransactionList = transactionModel.getTransactions(
+        default(DateTime),
+        DateUtilities.GetInstance.GetMonthStartDate(ToDate),
+        true, true);
 
+      int totalExpensesForMonth = 0;
+      int totalIncomeForMonth = 0;
+
+      foreach (TransactionModel item in CommonTransactionList)
+      {
+        if (item.TransactionType == EnumTransactionType.Expense)
+        {
+          totalExpensesForMonth += item.Amount;
+        }
+        else
+        {
+          totalIncomeForMonth += item.Amount;
+        }
+      }
+
+      foreach (TransactionModel item in RecurringTransactionList)
+      {
+        if (item.TransactionType == EnumTransactionType.Expense)
+        {
+          totalExpensesForMonth += item.Amount;
+        }
+        else
+        {
+          totalIncomeForMonth += item.Amount;
+        }
+      }
+
+      TotalExpenses = totalExpensesForMonth;
+      TotalIncome = totalIncomeForMonth;
+
+      OnPropertyChanged("TotalExpenses");
+      OnPropertyChanged("TotalIncome");
+
+    }
+
+    private List<TransactionModel> FilterOneTimeTransactions(List<TransactionModel> transactionList)
+    {
+      List<TransactionModel> tempTransactions = new List<TransactionModel>();
+
+      foreach (TransactionModel transaction in transactionList)
+      {
+        if (transaction.RecurrentStatus == 0)
+        {
+          tempTransactions.Add(transaction);
+        }
+      }
+
+      return tempTransactions;
     }
   }
 }

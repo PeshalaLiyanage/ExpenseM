@@ -8,7 +8,7 @@ namespace ExpenseM.Utilities
 {
   class DateUtilities
   {
-    DateTime date = DateTime.Now;
+    DateTime today = DateTime.Now;
     private static DateUtilities instance = null;
     private static readonly object syncObj = new object();
     DateTime monthStartDate;
@@ -16,7 +16,7 @@ namespace ExpenseM.Utilities
 
     DateUtilities()
     {
-      monthStartDate = new DateTime(date.Year, date.Month, 1);
+      monthStartDate = new DateTime(today.Year, today.Month, 1);
       monthEndDate= monthStartDate.AddMonths(1).AddDays(-1);
 
     }
@@ -38,6 +38,8 @@ namespace ExpenseM.Utilities
 
 
     public DateTime CurrentMonthEndDate() => monthEndDate;
+
+    public DateTime GetMonthStartDate(DateTime date) => new DateTime(date.Year, date.Month, 1);
    
   }
 }

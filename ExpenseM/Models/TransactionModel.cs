@@ -114,7 +114,11 @@ namespace ExpenseM.Models
 
     }
 
-    public List<TransactionModel> getTransactions(DateTime fromDate = default(DateTime), DateTime toDate = default(DateTime), bool recurring = false)
+    public List<TransactionModel> getTransactions(
+      DateTime fromDate = default(DateTime),
+      DateTime toDate = default(DateTime),
+      bool recurring = false,
+      bool futureRecurring = false)
     {
       try
       {
@@ -130,8 +134,7 @@ namespace ExpenseM.Models
 
 
 
-        dynamic records = 
-          fromDate != default(DateTime)
+        dynamic records = fromDate != default(DateTime)
           && toDate != default(DateTime)
           && recurring == true
           ? DBConnection.Connection.Transactions.Where(
@@ -155,6 +158,13 @@ namespace ExpenseM.Models
         ? DBConnection.Connection.Transactions.Where(
         transaction => transaction.StartDate >= fromDate
         ).ToList()
+        : futureRecurring == true   //Fetch records for financial status calculation
+        && toDate != default(DateTime)
+        && recurring == true
+        ? DBConnection.Connection.Transactions.Where(
+        transaction => transaction.EndDate >= toDate
+         && transaction.RecurrentStatus == 1
+        ).ToList()
         : toDate != default(DateTime)
         && recurring == true
         ? DBConnection.Connection.Transactions.Where(
@@ -169,6 +179,8 @@ namespace ExpenseM.Models
         DBConnection.Connection.Transactions.Where(
         transaction => transaction.RecurrentStatus == 1
         ).ToList()
+
+
         : DBConnection.Connection.Transactions.ToList();
 
         foreach (Transaction item in records)
