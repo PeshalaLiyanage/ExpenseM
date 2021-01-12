@@ -13,7 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.ComponentModel;
 using ExpenseM.Models;
 using ExpenseM.Utilities;
 
@@ -107,10 +106,9 @@ namespace ExpenseM.Views
       return tempList;
     }
 
-    private async void RecurringCheckbox_Click(object sender, RoutedEventArgs e)
+    private  void RecurringCheckbox_Click(object sender, RoutedEventArgs e)
     {
-      await Task.Run(()=> { 
-       if (RecurringChecked == true)
+      if (RecurringChecked == true)
       {
         TransactionList = transactionModel.getTransactions(FromDate, ToDate, true);
         tempTransactionList = TransactionList;
@@ -122,9 +120,8 @@ namespace ExpenseM.Views
         tempTransactionList = TransactionList;
         OnPropertyChanged("TransactionList");
       }
-      });
 
-     
+
     }
   }
 }

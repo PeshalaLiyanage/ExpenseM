@@ -133,6 +133,9 @@
     <value>\A(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z</value>
     <comment>Validation</comment>
   </data>
+  <data name="FINANCIAL_STATUS" xml:space="preserve">
+    <value>Financial Status</value>
+  </data>
   <data name="FIRST_NAME" xml:space="preserve">
     <value>First Name</value>
     <comment>Form input labels</comment>
@@ -171,5 +174,11 @@
   <data name="PHONE_NUMBER" xml:space="preserve">
     <value>Phone Number</value>
     <comment>Form input labels</comment>
+  </data>
+  <data name="TOTAL_EXPENSES" xml:space="preserve">
+    <value>Total Expenses</value>
+  </data>
+  <data name="TOTAL_INCOME" xml:space="preserve">
+    <value>Total Income</value>
   </data>
 </root>

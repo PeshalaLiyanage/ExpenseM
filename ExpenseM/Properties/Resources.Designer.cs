@@ -22,7 +22,7 @@ namespace ExpenseM.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace ExpenseM.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ExpenseM.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace ExpenseM.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace ExpenseM.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Address.
         /// </summary>
-        internal static string ADDRESS {
+        public static string ADDRESS {
             get {
                 return ResourceManager.GetString("ADDRESS", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace ExpenseM.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Confirm Password.
         /// </summary>
-        internal static string CONFIRM_PASSWORD {
+        public static string CONFIRM_PASSWORD {
             get {
                 return ResourceManager.GetString("CONFIRM_PASSWORD", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace ExpenseM.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
-        internal static string EMAIL {
+        public static string EMAIL {
             get {
                 return ResourceManager.GetString("EMAIL", resourceCulture);
             }
@@ -90,16 +90,25 @@ namespace ExpenseM.Properties {
         /// <summary>
         ///   Looks up a localized string similar to \A(?:[a-z0-9!#$%&amp;&apos;*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;&apos;*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z.
         /// </summary>
-        internal static string EMAIL_REGEX {
+        public static string EMAIL_REGEX {
             get {
                 return ResourceManager.GetString("EMAIL_REGEX", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Financial Status.
+        /// </summary>
+        public static string FINANCIAL_STATUS {
+            get {
+                return ResourceManager.GetString("FINANCIAL_STATUS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to First Name.
         /// </summary>
-        internal static string FIRST_NAME {
+        public static string FIRST_NAME {
             get {
                 return ResourceManager.GetString("FIRST_NAME", resourceCulture);
             }
@@ -108,7 +117,7 @@ namespace ExpenseM.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap IMG_BACKGROUND {
+        public static System.Drawing.Bitmap IMG_BACKGROUND {
             get {
                 object obj = ResourceManager.GetObject("IMG_BACKGROUND", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -118,7 +127,7 @@ namespace ExpenseM.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Last Name.
         /// </summary>
-        internal static string LAST_NAME {
+        public static string LAST_NAME {
             get {
                 return ResourceManager.GetString("LAST_NAME", resourceCulture);
             }
@@ -127,7 +136,7 @@ namespace ExpenseM.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You can add only maximum {0} records at once..
         /// </summary>
-        internal static string MAXIMUM_RECORDS_MESSAGE {
+        public static string MAXIMUM_RECORDS_MESSAGE {
             get {
                 return ResourceManager.GetString("MAXIMUM_RECORDS_MESSAGE", resourceCulture);
             }
@@ -136,7 +145,7 @@ namespace ExpenseM.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
-        internal static string PASSWORD {
+        public static string PASSWORD {
             get {
                 return ResourceManager.GetString("PASSWORD", resourceCulture);
             }
@@ -145,7 +154,7 @@ namespace ExpenseM.Properties {
         /// <summary>
         ///   Looks up a localized string similar to C:\Users\pesha\ExpenseM\AdminUserData.xml.
         /// </summary>
-        internal static string PATH_ADMIN_USER_DATA {
+        public static string PATH_ADMIN_USER_DATA {
             get {
                 return ResourceManager.GetString("PATH_ADMIN_USER_DATA", resourceCulture);
             }
@@ -154,7 +163,7 @@ namespace ExpenseM.Properties {
         /// <summary>
         ///   Looks up a localized string similar to C:\Users\pesha\ExpenseM\ContactUserData.xml.
         /// </summary>
-        internal static string PATH_CONTACT_USER_DATA {
+        public static string PATH_CONTACT_USER_DATA {
             get {
                 return ResourceManager.GetString("PATH_CONTACT_USER_DATA", resourceCulture);
             }
@@ -163,7 +172,7 @@ namespace ExpenseM.Properties {
         /// <summary>
         ///   Looks up a localized string similar to C:\Users\pesha\ExpenseM\TransactionTempData.xml.
         /// </summary>
-        internal static string PATH_TRANSACTION_TEMP_DATA {
+        public static string PATH_TRANSACTION_TEMP_DATA {
             get {
                 return ResourceManager.GetString("PATH_TRANSACTION_TEMP_DATA", resourceCulture);
             }
@@ -172,7 +181,7 @@ namespace ExpenseM.Properties {
         /// <summary>
         ///   Looks up a localized string similar to C:\Users\pesha\ExpenseM\UserTempData.xml.
         /// </summary>
-        internal static string PATH_USER_TEMP_DATA {
+        public static string PATH_USER_TEMP_DATA {
             get {
                 return ResourceManager.GetString("PATH_USER_TEMP_DATA", resourceCulture);
             }
@@ -181,9 +190,27 @@ namespace ExpenseM.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Phone Number.
         /// </summary>
-        internal static string PHONE_NUMBER {
+        public static string PHONE_NUMBER {
             get {
                 return ResourceManager.GetString("PHONE_NUMBER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Expenses.
+        /// </summary>
+        public static string TOTAL_EXPENSES {
+            get {
+                return ResourceManager.GetString("TOTAL_EXPENSES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Income.
+        /// </summary>
+        public static string TOTAL_INCOME {
+            get {
+                return ResourceManager.GetString("TOTAL_INCOME", resourceCulture);
             }
         }
     }

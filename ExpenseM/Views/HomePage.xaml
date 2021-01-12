@@ -4,6 +4,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:ExpenseM.Views"
       xmlns:UserControls="clr-namespace:ExpenseM.UserControls"
+      xmlns:res="clr-namespace:ExpenseM.Properties"
       x:Class="ExpenseM.Views.HomePage"
       mc:Ignorable="d"
       d:DesignHeight="700"
@@ -31,7 +32,7 @@
                     Height="40"
                     Click="CreateContactBtn_Click" />
             <Button x:Name="NavAddExpensesBtn"
-                    Content="Add Expenses"
+                    Content="Add Transactions"
                     HorizontalAlignment="Left"
                     Margin="10,10,0,0"
                     VerticalAlignment="Top"
@@ -48,75 +49,66 @@
                     RenderTransformOrigin="-6.549,1.081"
                     Height="40"
                     Click="NavViewTransactions_Click" />
-            <Button Content="Button"
+            <Button Content="View Contacts"
                     HorizontalAlignment="Left"
                     Margin="10,10,0,0"
                     VerticalAlignment="Top"
                     Width="209"
                     RenderTransformOrigin="-6.549,1.081"
                     Height="40" />
-            <Button Content="Button"
-                    HorizontalAlignment="Left"
-                    Margin="10,10,0,0"
-                    VerticalAlignment="Top"
-                    Width="209"
-                    RenderTransformOrigin="-6.549,1.081"
-                    Height="40"
-                    Grid.Column="0" />
-            <Button Content="Button"
-                    HorizontalAlignment="Left"
-                    Margin="10,10,0,0"
-                    VerticalAlignment="Top"
-                    Width="209"
-                    RenderTransformOrigin="-6.549,1.081"
-                    Height="40"
-                    Grid.Column="0" />
-            <Button Content="Button"
-                    HorizontalAlignment="Left"
-                    Margin="10,10,0,0"
-                    VerticalAlignment="Top"
-                    Width="209"
-                    RenderTransformOrigin="-6.549,1.081"
-                    Height="40" />
+
         </StackPanel>
 
-        <!--<Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="2*" />
-                <RowDefinition Height="3*"/>
-            </Grid.RowDefinitions>
-        </Grid>-->
-
-        <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Label Content="Financial Statement" HorizontalAlignment="Center" Margin="0,0,0,50"/>
+        <StackPanel Grid.Column="1"
+                    Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top">
+            <Label Content="{Binding FINANCIAL_STATUS, Source={StaticResource ResourceKey=ApplicationResources}}"
+                   HorizontalAlignment="Center"
+                   Margin="0,50,0,50"
+                   FontSize="25" />
             <StackPanel Orientation="Horizontal"
                         Margin="0,0,0,50">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-                    <Label Content="From" Width="100"/>
-                    <DatePicker Width="200"/>
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+                    <Label Content="From"
+                           Width="50" />
+                    <DatePicker Width="200"
+                                Name="FromDatePicker"
+                                CalendarClosed="FromDatePicker_CalendarClosed"
+                                DisplayDateEnd="{Binding ToDate}"
+                                SelectedDate="{Binding FromDate, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
 
                     <Label Content="To"
-                           Width="100" />
-                    <DatePicker Width="200" />
+                           Width="25"
+                           Margin="30,0,10,0" />
+                    <DatePicker Width="200"
+                                Name="ToDatePicker"
+                                CalendarClosed="ToDatePicker_CalendarClosed"
+                                DisplayDateStart="{Binding FromDate}"
+                                SelectedDate="{Binding ToDate, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
             </StackPanel>
 
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
-                    <Label Content="Total Income"
-                           Width="100" Margin="0,0,50,0" />
-                    <TextBox Text="23"
-                               Width="100" IsReadOnly="True" />
+            <StackPanel Orientation="Vertical"
+                        HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,0,0,20">
+                    <Label Content="{Binding TOTAL_INCOME, Source={StaticResource ResourceKey=ApplicationResources}}"
+                           Width="120"
+                           Margin="0,0,50,0" />
+                    <TextBox Text="{Binding TotalIncome}"
+                             Width="120"
+                             IsReadOnly="True" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Total Expenses"
-                           Width="100"
+                    <Label Content="{Binding TOTAL_EXPENSES, Source={StaticResource ResourceKey=ApplicationResources}}"
+                           Width="120"
                            Margin="0,0,50,0" />
-                    <TextBox Text="23"
-                             Width="100"
+                    <TextBox Text="{Binding TotalExpenses}"
+                             Width="120"
                              IsReadOnly="True" />
                 </StackPanel>
             </StackPanel>
