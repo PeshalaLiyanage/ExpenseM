@@ -56,7 +56,7 @@ namespace ExpenseM.Models
             (short)element.RecurrentStatus,
             element.Description,
             element.StartDate,
-            element.EndDate == null ? Convert.ToDateTime("0001-01-01") : element.EndDate,
+            element.EndDate == null ? default(DateTime) : element.EndDate,
             element.Contact);
 
           Transaction transaction = new Transaction();
@@ -64,7 +64,7 @@ namespace ExpenseM.Models
           transaction.TransactionTyoe = (short)element.TransactionType;
           transaction.RecurrentStatus = (short)element.RecurrentStatus;
           transaction.StartDate = element.StartDate;
-          transaction.EndDate = null;
+          transaction.EndDate = element.EndDate;
           transaction.CreatedAt = DateTime.Now;
           transaction.Description = element.Description;
           transaction.UserId = element.Contact.UserId;
@@ -114,42 +114,56 @@ namespace ExpenseM.Models
 
     }
 
-    public List<TransactionModel> getTransactions(DateTime fromDate = default(DateTime), DateTime toDate = default(DateTime))
+    public List<TransactionModel> getTransactions(DateTime fromDate = default(DateTime), DateTime toDate = default(DateTime), bool recurring = false)
     {
       try
       {
-        Console.WriteLine("====start date:"+fromDate);
-        Console.WriteLine("====end date:"+toDate);
-        Console.WriteLine("====default date:"+ default(DateTime));
+
+        Console.WriteLine("====start date:" + fromDate);
+        Console.WriteLine("====end date:" + toDate);
+
+        Console.WriteLine("====recurrring date:" + recurring);
         List<TransactionModel> transactionList = new List<TransactionModel>();
 
         //fromDate = new DateTime(2021,01,10);
         //toDate = new DateTime(2021,01,14);
 
-        if (fromDate != default(DateTime) && toDate != default(DateTime))
-        {
-          Console.WriteLine("-----------fuck-----------");
-        }
+     
 
-        dynamic records = fromDate != default(DateTime) && toDate != default(DateTime)
-          ? DBConnection.Connection.Transactions
-          .Where(
+        dynamic records = fromDate != default(DateTime) && toDate != default(DateTime) && recurring == true
+          ? DBConnection.Connection.Transactions.Where(
           transaction => transaction.StartDate >= fromDate
           && transaction.StartDate <= toDate
+          && transaction.RecurrentStatus == 1
           ).ToList()
-          : fromDate != default(DateTime)
-          ? DBConnection.Connection.Transactions
-          .Where(
-          transaction => transaction.StartDate >= fromDate
-          ).ToList()
-          : toDate != default(DateTime) ?
-           DBConnection.Connection.Transactions
-           .Where(
-          transaction => transaction.StartDate <= toDate
-          ).ToList()
-          : DBConnection.Connection.Transactions.ToList();
-
-        Console.WriteLine("============count =: ", records);
+        : fromDate != default(DateTime) && toDate != default(DateTime)
+        ? DBConnection.Connection.Transactions.Where(
+        transaction => transaction.StartDate >= fromDate
+        && transaction.StartDate <= toDate
+        ).ToList()
+        : fromDate != default(DateTime) && recurring == true
+        ? DBConnection.Connection.Transactions.Where(
+        transaction => transaction.StartDate >= fromDate
+         && transaction.RecurrentStatus == 1
+        ).ToList()
+        : fromDate != default(DateTime)
+        ? DBConnection.Connection.Transactions.Where(
+        transaction => transaction.StartDate >= fromDate
+        ).ToList()
+        : toDate != default(DateTime) && recurring == true
+        ? DBConnection.Connection.Transactions.Where(
+        transaction => transaction.StartDate <= toDate
+         && transaction.RecurrentStatus == 1
+        ).ToList()
+        : toDate != default(DateTime) ?
+         DBConnection.Connection.Transactions.Where(
+        transaction => transaction.StartDate <= toDate
+        ).ToList()
+        : recurring == true ?
+        DBConnection.Connection.Transactions.Where(
+        transaction => transaction.RecurrentStatus == 1
+        ).ToList()
+        : DBConnection.Connection.Transactions.ToList();
 
         foreach (Transaction item in records)
         {

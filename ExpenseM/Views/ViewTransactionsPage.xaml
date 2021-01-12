@@ -46,24 +46,36 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
                 <ColumnDefinition />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <CheckBox Content="Expenses" />
+            <CheckBox Content="Expenses"
+                      x:Name="ExpenseCheckbox"
+                      IsChecked="{Binding ExpenseChecked,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                      Click="SelectType" />
             <CheckBox Content="Income"
-                      Grid.Column="1" />
-            <StackPanel  Grid.Column="2"
+                      x:Name="IncomeCheckbox"
+                      Grid.Column="1"
+                      IsChecked="{Binding IncomeChecked,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                      Click="SelectType" />
+            <CheckBox Content="Recurring"
+                      x:Name="RecurringCheckbox"
+                      Grid.Column="2"
+                      IsChecked="{Binding RecurringChecked,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                      Click="RecurringCheckbox_Click" />
+            <StackPanel  Grid.Column="3"
                          Orientation="Vertical"
                          HorizontalAlignment="Center">
                 <Label Content="From" />
                 <DatePicker x:Name="StartDatePicker"
-                            Grid.Column="2"
+                            Grid.Column="3"
                             CalendarClosed="SetStartDate" />
             </StackPanel>
-            <StackPanel  Grid.Column="3"
+            <StackPanel  Grid.Column="4"
                          Orientation="Vertical"
                          HorizontalAlignment="Center">
                 <Label Content="To" />
                 <DatePicker x:Name="EndDatePicker"
-                            Grid.Column="3"
+                            Grid.Column="4"
                             CalendarClosed="SetEndDate" />
             </StackPanel>
 
@@ -78,8 +90,7 @@
                       CanUserAddRows="False"
                       IsReadOnly="True"
                       AlternatingRowBackground="AliceBlue"
-                      AutoGenerateColumns="False"
-                      >
+                      AutoGenerateColumns="False">
 
                 <DataGrid.Columns>
 
@@ -100,7 +111,7 @@
                     <DataGridTextColumn Header="Description"
                                         Width="*"
                                         Binding="{Binding Path=Description}" />
-                    <DataGridTemplateColumn Header="Start Date"
+                    <DataGridTemplateColumn Header="Date"
                                             Width="*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -108,7 +119,8 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="End Date" Width="*">
+                    <DataGridTemplateColumn Header="Recurring End"
+                                            Width="*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Path=EndDate,StringFormat=d}" />
