@@ -49,8 +49,8 @@ namespace ExpenseM.Views
 
     public List<TransactionModel> TransactionList { get; set; }
     public List<TransactionModel> tempTransactionList;
-    public DateTime FromDate { get; set; }
-    public DateTime ToDate { get; set; }
+    public DateTime FromDate { get; set; } = DateUtilities.GetInstance.CurrentMonthStartDate();
+    public DateTime ToDate { get; set; } = DateUtilities.GetInstance.CurrentMonthEndDate();
 
     public bool ExpenseChecked { get; set; } = true;
     public bool IncomeChecked { get; set; } = true;
@@ -61,6 +61,7 @@ namespace ExpenseM.Views
       FromDate = (DateTime)this.StartDatePicker.SelectedDate;
       TransactionList = transactionModel.getTransactions(FromDate,ToDate);
       OnPropertyChanged("TransactionList");
+      OnPropertyChanged("FromDate");
     }
 
     private void SetEndDate(object sender, RoutedEventArgs e)
@@ -68,6 +69,7 @@ namespace ExpenseM.Views
       ToDate = (DateTime)this.EndDatePicker.SelectedDate;
       TransactionList = transactionModel.getTransactions( FromDate,ToDate);
       OnPropertyChanged("TransactionList");
+      OnPropertyChanged("ToDate");
     }
 
   
@@ -107,19 +109,19 @@ namespace ExpenseM.Views
 
     private async void RecurringCheckbox_Click(object sender, RoutedEventArgs e)
     {
-      await Task.Run(()=> {
-        if (RecurringChecked == true)
-        {
-          TransactionList = transactionModel.getTransactions(FromDate, ToDate, true);
-          tempTransactionList = TransactionList;
-          OnPropertyChanged("TransactionList");
-        }
-        else
-        {
-          TransactionList = transactionModel.getTransactions(FromDate, ToDate);
-          tempTransactionList = TransactionList;
-          OnPropertyChanged("TransactionList");
-        }
+      await Task.Run(()=> { 
+       if (RecurringChecked == true)
+      {
+        TransactionList = transactionModel.getTransactions(FromDate, ToDate, true);
+        tempTransactionList = TransactionList;
+        OnPropertyChanged("TransactionList");
+      }
+      else
+      {
+        TransactionList = transactionModel.getTransactions(FromDate, ToDate);
+        tempTransactionList = TransactionList;
+        OnPropertyChanged("TransactionList");
+      }
       });
 
      

@@ -68,15 +68,20 @@
                 <Label Content="From" />
                 <DatePicker x:Name="StartDatePicker"
                             Grid.Column="3"
-                            CalendarClosed="SetStartDate" />
+                            CalendarClosed="SetStartDate"
+                            DisplayDateEnd="{Binding ToDate}"
+                            SelectedDate="{Binding FromDate, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <StackPanel  Grid.Column="4"
                          Orientation="Vertical"
-                         HorizontalAlignment="Center">
+                         HorizontalAlignment="Center"
+>
                 <Label Content="To" />
                 <DatePicker x:Name="EndDatePicker"
                             Grid.Column="4"
-                            CalendarClosed="SetEndDate" />
+                            CalendarClosed="SetEndDate"
+                            DisplayDateStart="{Binding FromDate}"
+                            SelectedDate="{Binding ToDate, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
 
         </Grid>

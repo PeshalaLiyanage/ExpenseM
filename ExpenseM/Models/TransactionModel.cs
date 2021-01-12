@@ -128,20 +128,25 @@ namespace ExpenseM.Models
         //fromDate = new DateTime(2021,01,10);
         //toDate = new DateTime(2021,01,14);
 
-     
 
-        dynamic records = fromDate != default(DateTime) && toDate != default(DateTime) && recurring == true
+
+        dynamic records = 
+          fromDate != default(DateTime)
+          && toDate != default(DateTime)
+          && recurring == true
           ? DBConnection.Connection.Transactions.Where(
           transaction => transaction.StartDate >= fromDate
           && transaction.StartDate <= toDate
           && transaction.RecurrentStatus == 1
           ).ToList()
-        : fromDate != default(DateTime) && toDate != default(DateTime)
+        : fromDate != default(DateTime)
+        && toDate != default(DateTime)
         ? DBConnection.Connection.Transactions.Where(
         transaction => transaction.StartDate >= fromDate
         && transaction.StartDate <= toDate
         ).ToList()
-        : fromDate != default(DateTime) && recurring == true
+        : fromDate != default(DateTime)
+        && recurring == true
         ? DBConnection.Connection.Transactions.Where(
         transaction => transaction.StartDate >= fromDate
          && transaction.RecurrentStatus == 1
@@ -150,7 +155,8 @@ namespace ExpenseM.Models
         ? DBConnection.Connection.Transactions.Where(
         transaction => transaction.StartDate >= fromDate
         ).ToList()
-        : toDate != default(DateTime) && recurring == true
+        : toDate != default(DateTime)
+        && recurring == true
         ? DBConnection.Connection.Transactions.Where(
         transaction => transaction.StartDate <= toDate
          && transaction.RecurrentStatus == 1

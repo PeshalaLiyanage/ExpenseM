@@ -81,6 +81,7 @@
     <Compile Include="UserControls\NavBar.xaml.cs">
       <DependentUpon>NavBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\DateUtilities.cs" />
     <Compile Include="Utilities\Delegates.cs" />
     <Compile Include="Utilities\Enums.cs" />
     <Compile Include="Utilities\FileUtilities.cs" />
