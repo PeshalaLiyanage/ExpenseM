@@ -58,12 +58,14 @@
                  TextWrapping="Wrap"
                  Text="{Binding ElementName=TestUC,Path=UserInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  VerticalAlignment="Top"
-                 Margin="226.2,53,95.6,0" />
+                 Margin="226.2,53,95.6,0"
+                 TextChanged="ValidateEmail"/>
         <PasswordBox x:Name="PasswordInput"
                      Grid.Column="1"
                      Grid.Row="1"
                      Height="23"
-                     Margin="226.2,101,95.6,160" />
+                     Margin="226.2,101,95.6,160"
+                     PasswordChanged="PasswordChanged" />
         <Button x:Name="LoginBtn"
                 Content="Login"
                 Grid.Column="1"
