@@ -7,7 +7,7 @@ using System.Windows.Controls;
 using ExpenseM.Entities;
 using ExpenseM.Models;
 using System;
-
+using System.Threading.Tasks;
 
 namespace ExpenseM.Views
 {
@@ -73,7 +73,7 @@ namespace ExpenseM.Views
     private void PopulateDataToForm()
     {
       UserModel tempUserData = new UserModel().getTempContactDataFromFile();
-      
+
       // set chached data to input fields
       if (tempUserData != null)
       {
@@ -191,7 +191,7 @@ namespace ExpenseM.Views
     }
 
     // Save contact data
-    private void CreateContactBtn_Click(object sender, RoutedEventArgs e)
+    private async void CreateContactBtn_Click(object sender, RoutedEventArgs e)
     {
       try
       {
@@ -219,7 +219,12 @@ namespace ExpenseM.Views
             contact.PhoneNumber = element.UserInputbox.Text;
           }
         }
-        contact.AddUser();
+
+        await Task.Run(() =>
+        {
+          contact.AddUser();
+        });
+
         MessageBox.Show(Properties.Resources.USER_ADDING_SUCCESS);
       }
 

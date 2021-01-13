@@ -105,7 +105,7 @@ namespace ExpenseM.Views
 
     private void CalculateFInancialStatus()
     {
-      StatusMessage = "Processing";
+      StatusMessage = Properties.Resources.PROCESSING;
       OnPropertyChanged("StatusMessage");
       int totalExpensesForMonth = 0;
       int totalIncomeForMonth = 0;

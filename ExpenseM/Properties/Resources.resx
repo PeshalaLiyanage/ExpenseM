@@ -183,6 +183,9 @@
   <data name="PREDICTION_SUCCESS" xml:space="preserve">
     <value>Prediction success</value>
   </data>
+  <data name="PROCESSING" xml:space="preserve">
+    <value>Processing</value>
+  </data>
   <data name="READY_MESSAGE" xml:space="preserve">
     <value>Ready</value>
   </data>
