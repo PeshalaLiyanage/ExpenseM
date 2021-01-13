@@ -32,6 +32,4 @@ namespace ExpenseM.Views
     }
     public List<UserModel> ContactsList { get; set; }
   }
-
-  
 }
