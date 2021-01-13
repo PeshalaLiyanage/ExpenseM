@@ -111,7 +111,7 @@ namespace ExpenseM.Views
 
         if (result)
         {
-          MessageBox.Show(Properties.Resources.DATA_SAVE_SUCCESS);
+          MessageBox.Show(Properties.Resources.DATA_SAVE_SUCCESS, this.Title);
         }
         else
         {

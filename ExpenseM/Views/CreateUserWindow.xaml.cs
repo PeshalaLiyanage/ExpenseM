@@ -68,6 +68,8 @@ namespace ExpenseM.Views
         }
       });
 
+      MessageBox.Show(Properties.Resources.USER_CREATE_SUCCESS);
+
     }
 
     // Write user typing data to a file while user typing

@@ -137,7 +137,7 @@ namespace ExpenseM.Models
         : toDate != default(DateTime)
           && recurring == true
         ? DBConnection.Connection.Transactions.Where(
-          transaction => transaction.StartDate <= toDate
+          transaction => transaction.EndDate <= toDate
           && transaction.RecurrentStatus == 1
         ).ToList()
         : toDate != default(DateTime)

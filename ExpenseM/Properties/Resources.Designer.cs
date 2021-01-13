@@ -268,6 +268,15 @@ namespace ExpenseM.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User created successfylly.
+        /// </summary>
+        public static string USER_CREATE_SUCCESS {
+            get {
+                return ResourceManager.GetString("USER_CREATE_SUCCESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User not found for {0}.
         /// </summary>
         public static string USER_NOT_FOUND {
