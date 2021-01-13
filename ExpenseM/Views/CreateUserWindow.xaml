@@ -23,12 +23,7 @@
             <TextBox x:Name="FirstNameInputbox"
                      Width="250"
                      LostFocus="UserInput_LostFocus"
-                     BorderBrush="#FF2554E2"
-                     Foreground="#FF032051"
-                     MouseEnter="Inputbox_MouseEnter">
-                <TextBox.Effect>
-                    <DropShadowEffect Opacity="0.365" />
-                </TextBox.Effect>
+                     >
             </TextBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal"

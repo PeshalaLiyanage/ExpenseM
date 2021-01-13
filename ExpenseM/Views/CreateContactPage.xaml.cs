@@ -17,14 +17,7 @@ namespace ExpenseM.Views
   /// </summary>
   public partial class CreateContactPage : Page
   {
-
-    private String _firstName;
-    private String _lastName;
-    private String _address;
-    private String _phoneNumber;
-    private String _email;
     UserModel contact = new UserModel();
-
 
     List<LabeledTextbox> labeledTextboxes = new List<LabeledTextbox>();
     List<LabelWithKey> labelNames = new List<LabelWithKey>
@@ -35,14 +28,6 @@ namespace ExpenseM.Views
             new LabelWithKey("address",Properties.Resources.ADDRESS),
             new LabelWithKey("phoneNo",Properties.Resources.PHONE_NUMBER)
         };
-
-    //private bool buttonEnabled = false;
-
-    //public bool ButtonEnabled
-    //{
-    //  get { return buttonEnabled; }
-    //  set { buttonEnabled = value; }
-    //}
 
     public CreateContactPage()
     {
@@ -59,6 +44,7 @@ namespace ExpenseM.Views
         labeledTextbox.Name = element.Key;
         labeledTextbox.LabelTitle.Content = element.LabelName;
         labeledTextbox.HorizontalAlignment = HorizontalAlignment.Center;
+        labeledTextbox.UserInputbox.LostFocus += UserInput_LostFocus;
 
         Thickness thickness = new Thickness();
         thickness.Top = 10;
@@ -69,13 +55,84 @@ namespace ExpenseM.Views
         switch (element.Key)
         {
           case "email":
-            _email = labeledTextbox.UserInputbox.Text;
             labeledTextbox.UserInputbox.TextChanged += ValidateEmail;
             break;
           default:
             break;
 
         }
+      }
+      PopulateDataToForm();
+    }
+
+    private void PopulateDataToForm()
+    {
+      UserModel tempUserData = new UserModel().getTempContactDataFromFile();
+
+      if (tempUserData != null)
+      {
+        foreach (LabeledTextbox item in labeledTextboxes)
+        {
+          switch (item.Name)
+          {
+            case "fName":
+              item.UserInputbox.Text = tempUserData.FirstName;
+              break;
+            case "lName":
+              item.UserInputbox.Text = tempUserData.LastName;
+              break;
+            case "address":
+              item.UserInputbox.Text = tempUserData.Address;
+              break;
+            case "email":
+              item.UserInputbox.Text = tempUserData.Email;
+              break;
+            case "phoneNo":
+              item.UserInputbox.Text = tempUserData.PhoneNumber;
+              break;
+            default:
+              break;
+          }
+        }
+      }
+    }
+
+    private void UserInput_LostFocus(object sender, RoutedEventArgs e)
+    {
+      UserModel tempUserModel = new UserModel();
+
+      foreach (LabeledTextbox item in labeledTextboxes)
+      {
+        switch (item.Name)
+        {
+          case "fName":
+            tempUserModel.FirstName = item.UserInputbox.Text;
+            break;
+          case "lName":
+            tempUserModel.LastName = item.UserInputbox.Text;
+            break;
+          case "address":
+            tempUserModel.Address = item.UserInputbox.Text;
+            break;
+          case "email":
+            tempUserModel.Email = item.UserInputbox.Text;
+            break;
+          case "phoneNo":
+            tempUserModel.PhoneNumber = item.UserInputbox.Text;
+            break;
+          default:
+            break;
+        }
+      }
+
+      tempUserModel.AddTempUserDataToFile(Properties.Resources.PATH_CONTACT_USER_DATA);
+    }
+
+    private void ClearBtn_Click(object sender, RoutedEventArgs e)
+    {
+      foreach (LabeledTextbox item in labeledTextboxes)
+      {
+        item.UserInputbox.Text = default;
       }
     }
 
@@ -128,12 +185,10 @@ namespace ExpenseM.Views
 
     private void CreateContactBtn_Click(object sender, RoutedEventArgs e)
     {
-      // todo - add email duplicate check validation
       try
       {
         foreach (LabeledTextbox element in labeledTextboxes)
         {
-
           // TODO -  add validation logics here
           if (element.Name == "email"
             && InputValidations.GetInstance.ValidateEmail(element.UserInputbox.Text))
@@ -156,22 +211,15 @@ namespace ExpenseM.Views
           {
             contact.PhoneNumber = element.UserInputbox.Text;
           }
-          else
-          {
-            // throw new Exception("Invalid user inputs");
-          }
-
         }
         contact.AddUser();
+        MessageBox.Show(Properties.Resources.USER_ADDING_SUCCESS);
       }
-      finally { }
-      //catch (Exception ex)
-      //{
-      //  MessageBox.Show(ex.Message);
-      //}
 
-
-
+      catch (Exception)
+      {
+        MessageBox.Show(Properties.Resources.SOMETHING_WRONG);
+      }
     }
   }
 }

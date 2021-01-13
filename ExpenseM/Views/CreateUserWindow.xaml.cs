@@ -79,7 +79,7 @@ namespace ExpenseM.Views
          this.EmailInputbox.Text, 1
          );
 
-      userModel.AddTempUserDataToFile();
+      userModel.AddTempUserDataToFile(Properties.Resources.PATH_USER_TEMP_DATA);
     }
 
     private void Inputbox_MouseEnter(object sender, MouseEventArgs e)

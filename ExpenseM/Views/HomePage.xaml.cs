@@ -26,7 +26,7 @@ namespace ExpenseM.Views
     public HomePage()
     {
       InitializeComponent();
-      this.WindowTitle = "ExpenseM";
+      this.Title = "ExpenseM";
       this.DataContext = this;
       CalculateFInancialStatus();
     }

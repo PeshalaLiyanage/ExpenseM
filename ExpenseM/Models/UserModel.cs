@@ -204,14 +204,31 @@ namespace ExpenseM.Models
       return null;
     }
 
-    public void AddTempUserDataToFile()
+    public UserModel getTempContactDataFromFile()
+    {
+      if (File.Exists(Properties.Resources.PATH_CONTACT_USER_DATA) == true)
+      {
+        tempUserData.ReadXml(Properties.Resources.PATH_CONTACT_USER_DATA);
+        ExpenseMDataSet.UserRow userData = tempUserData.User[0];
+
+        return new UserModel(
+            userData.FirstName,
+            userData.LastName,
+            userData.Address,
+            userData.PhoneNumber,
+            userData.Email, 1);
+      }
+      return null;
+    }
+
+    public void AddTempUserDataToFile(string path)
     {
       Task.Run(() =>
       {
         tempUserData.User.Clear();
         tempUserData.User.AddUserRow(firstName, lastName, address, phoneNumber, email, password);
-        FileUtilities.GetInstance.DeleteFile(Properties.Resources.PATH_USER_TEMP_DATA);
-        FileUtilities.GetInstance.WriteToFile(tempUserData, Properties.Resources.PATH_USER_TEMP_DATA);
+        FileUtilities.GetInstance.DeleteFile(path);
+        FileUtilities.GetInstance.WriteToFile(tempUserData, path);
       });
 
     }

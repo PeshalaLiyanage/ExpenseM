@@ -215,6 +215,15 @@ namespace ExpenseM.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Something went wrong. Please try again..
+        /// </summary>
+        public static string SOMETHING_WRONG {
+            get {
+                return ResourceManager.GetString("SOMETHING_WRONG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total Expenses.
         /// </summary>
         public static string TOTAL_EXPENSES {
@@ -229,6 +238,15 @@ namespace ExpenseM.Properties {
         public static string TOTAL_INCOME {
             get {
                 return ResourceManager.GetString("TOTAL_INCOME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User successfully added..
+        /// </summary>
+        public static string USER_ADDING_SUCCESS {
+            get {
+                return ResourceManager.GetString("USER_ADDING_SUCCESS", resourceCulture);
             }
         }
     }

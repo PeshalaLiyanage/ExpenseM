@@ -6,5 +6,11 @@
              xmlns:resource="clr-namespace:ExpenseM.Properties">
     <Application.Resources>
         <resource:Resources x:Key="ApplicationResources" />
+        <Style TargetType="Button">
+            <Setter Property="Background"
+                    Value="PowderBlue" />
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+        </Style>
     </Application.Resources>
 </Application>
