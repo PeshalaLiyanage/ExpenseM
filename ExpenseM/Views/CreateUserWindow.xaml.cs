@@ -30,9 +30,9 @@ namespace ExpenseM.Views
     {
       InitializeComponent();
       this.Title = "Create User";
-
       UserModel tempUserData = new UserModel().getTempUserDataFromFile();
 
+      // Re populate cached data to form
       if (tempUserData != null)
       {
         this.FirstNameInputbox.Text = tempUserData.FirstName;
@@ -55,20 +55,22 @@ namespace ExpenseM.Views
 
       userModel.Password = this.PasswordInputbox.Password;
 
+      // Add user data to database using a different thread 
       await Task.Run(() =>
       {
         try
         {
           userModel.AddUser();
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-          MessageBox.Show(ex.Message);
+          MessageBox.Show(Properties.Resources.SOMETHING_WRONG);
         }
       });
 
     }
 
+    // Write user typing data to a file while user typing
     private void UserInput_LostFocus(object sender, RoutedEventArgs e)
     {
       userModel = new UserModel(
@@ -80,11 +82,6 @@ namespace ExpenseM.Views
          );
 
       userModel.AddTempUserDataToFile(Properties.Resources.PATH_USER_TEMP_DATA);
-    }
-
-    private void Inputbox_MouseEnter(object sender, MouseEventArgs e)
-    {
-      this.FirstNameInputbox.Background = Brushes.Aqua;
     }
   }
 }

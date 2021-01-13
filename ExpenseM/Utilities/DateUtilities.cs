@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ExpenseM.Utilities
 {
+  // Utility class for date functionalities
   class DateUtilities
   {
     DateTime today = DateTime.Now;

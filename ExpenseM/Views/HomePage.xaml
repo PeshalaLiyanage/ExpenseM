@@ -12,15 +12,6 @@
       FontSize="16"
       Title="HomePage">
 
-    <Page.Resources>
-        <!--<Style TargetType="Button">
-            <Setter Property="Background"
-                    Value="PowderBlue" />
-            <Setter Property="VerticalAlignment"
-                    Value="Center" />
-        </Style>-->
-    </Page.Resources>
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="229*" />
@@ -144,8 +135,7 @@
             <TextBlock Text="Status : " />
 
             <StatusBarItem Content="{Binding StatusMessage}" />
-           <!--TODO progress bar-->
-            <!--<ProgressBar />-->
+
         </StatusBar>
 
     </Grid>

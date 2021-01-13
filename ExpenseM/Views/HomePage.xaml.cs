@@ -31,15 +31,18 @@ namespace ExpenseM.Views
       CalculateFInancialStatus();
     }
 
+    TransactionModel transactionModel = new TransactionModel();
     public DateTime FromDate { get; set; } = DateUtilities.GetInstance.CurrentMonthStartDate();
     public DateTime ToDate { get; set; } = DateUtilities.GetInstance.CurrentMonthEndDate();
-
     public int TotalExpenses { get; set; }
     public int TotalIncome { get; set; }
-    public string StatusMessage { get; set; } = "Ready";
+    public string StatusMessage { get; set; } = Properties.Resources.READY_MESSAGE; // use resource file
+    public List<TransactionModel> CommonTransactionList { get; set; }
+    public List<TransactionModel> RecurringTransactionList { get; set; }
 
     public event PropertyChangedEventHandler PropertyChanged;
 
+    // notify property changes
     protected void OnPropertyChanged(string property)
     {
       PropertyChangedEventHandler handler = PropertyChanged;
@@ -49,6 +52,7 @@ namespace ExpenseM.Views
       }
     }
 
+    // Navigation functions
     private void CreateContactBtn_Click(object sender, RoutedEventArgs e)
     {
       this.NavigationService.Navigate(new CreateContactPage());
@@ -87,7 +91,7 @@ namespace ExpenseM.Views
     {
       OnPropertyChanged("ToDate");
 
-      if (FromDate > DateUtilities.GetInstance.CurrentMonthEndDate() 
+      if (FromDate > DateUtilities.GetInstance.CurrentMonthEndDate()
         || ToDate > DateUtilities.GetInstance.CurrentMonthEndDate())
       {
         PredictFinancialStatus();
@@ -96,25 +100,26 @@ namespace ExpenseM.Views
       {
         CalculateFInancialStatus();
       }
-      
+
     }
 
-    TransactionModel transactionModel = new TransactionModel();
-    public List<TransactionModel> CommonTransactionList { get; set; }
-    public List<TransactionModel> RecurringTransactionList { get; set; }
     private void CalculateFInancialStatus()
     {
       StatusMessage = "Processing";
       OnPropertyChanged("StatusMessage");
+      int totalExpensesForMonth = 0;
+      int totalIncomeForMonth = 0;
+
+      // Get only one time transactions
       CommonTransactionList = FilterOneTimeTransactions(transactionModel.getTransactions(FromDate, ToDate));
+
+      // Get only recurrent transactions
       RecurringTransactionList = transactionModel.getTransactions(
         default(DateTime),
         DateUtilities.GetInstance.GetMonthStartDate(ToDate),
         true, true);
 
-      int totalExpensesForMonth = 0;
-      int totalIncomeForMonth = 0;
-
+      // calculate total one time trancation amount
       foreach (TransactionModel item in CommonTransactionList)
       {
         if (item.TransactionType == EnumTransactionType.Expense)
@@ -127,6 +132,7 @@ namespace ExpenseM.Views
         }
       }
 
+      // calculate total recurrent trancation amount
       foreach (TransactionModel item in RecurringTransactionList)
       {
         if (item.TransactionType == EnumTransactionType.Expense)
@@ -141,13 +147,14 @@ namespace ExpenseM.Views
 
       TotalExpenses = totalExpensesForMonth;
       TotalIncome = totalIncomeForMonth;
-      StatusMessage = "Ready";
-      OnPropertyChanged("StatusMessage");
+      StatusMessage = Properties.Resources.READY_MESSAGE;
+      OnPropertyChanged("StatusMessage"); // notify
       OnPropertyChanged("TotalExpenses");
       OnPropertyChanged("TotalIncome");
 
     }
 
+    // The prediction algorithm
     private void PredictFinancialStatus()
     {
       StatusMessage = Properties.Resources.PREDICTING;
@@ -161,16 +168,16 @@ namespace ExpenseM.Views
       int totalExpenses = 0;
       int totalIncome = 0;
       int averageIncomePerMonth = 0;
-      int averageExpensePerMonth= 0;
+      int averageExpensePerMonth = 0;
 
       foreach (TransactionModel item in CommonTransactionList)
       {
-        if (item.StartDate< allRecordsBeginDate)
+        if (item.StartDate < allRecordsBeginDate)
         {
           allRecordsBeginDate = item.StartDate;
         }
 
-        if (item.StartDate> allRecordsEndDate)
+        if (item.StartDate > allRecordsEndDate)
         {
           allRecordsEndDate = item.StartDate;
         }
@@ -204,7 +211,9 @@ namespace ExpenseM.Views
           }
           else
           {
-            recurrentIncomeAmount += item.Amount * DateUtilities.GetInstance.GetMonthDifference(DateUtilities.GetInstance.GetMonthStartDate(item.StartDate), DateUtilities.GetInstance.GetMonthEndDate(item.EndDate));
+            recurrentIncomeAmount += item.Amount * DateUtilities.GetInstance.GetMonthDifference(
+              DateUtilities.GetInstance.GetMonthStartDate(item.StartDate), 
+              DateUtilities.GetInstance.GetMonthEndDate(item.EndDate));
           }
         }
         else
@@ -215,7 +224,9 @@ namespace ExpenseM.Views
           }
           else
           {
-            recurrentExpenseAmount += item.Amount * DateUtilities.GetInstance.GetMonthDifference(DateUtilities.GetInstance.GetMonthStartDate(item.StartDate), DateUtilities.GetInstance.GetMonthEndDate(item.EndDate));
+            recurrentExpenseAmount += item.Amount * DateUtilities.GetInstance.GetMonthDifference(
+              DateUtilities.GetInstance.GetMonthStartDate(item.StartDate), 
+              DateUtilities.GetInstance.GetMonthEndDate(item.EndDate));
           }
         }
 
@@ -243,7 +254,5 @@ namespace ExpenseM.Views
       }
       return tempTransactions;
     }
-
-    
   }
 }

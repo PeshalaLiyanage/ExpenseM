@@ -79,6 +79,24 @@ namespace ExpenseM.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data saving failed.
+        /// </summary>
+        public static string DATA_SAVE_FAILD {
+            get {
+                return ResourceManager.GetString("DATA_SAVE_FAILD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data saved successfully.
+        /// </summary>
+        public static string DATA_SAVE_SUCCESS {
+            get {
+                return ResourceManager.GetString("DATA_SAVE_SUCCESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string EMAIL {
@@ -215,6 +233,15 @@ namespace ExpenseM.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ready.
+        /// </summary>
+        public static string READY_MESSAGE {
+            get {
+                return ResourceManager.GetString("READY_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Something went wrong. Please try again..
         /// </summary>
         public static string SOMETHING_WRONG {
@@ -247,6 +274,15 @@ namespace ExpenseM.Properties {
         public static string USER_ADDING_SUCCESS {
             get {
                 return ResourceManager.GetString("USER_ADDING_SUCCESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User not found for {0}.
+        /// </summary>
+        public static string USER_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("USER_NOT_FOUND", resourceCulture);
             }
         }
     }

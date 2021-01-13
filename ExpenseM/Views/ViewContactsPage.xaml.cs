@@ -29,7 +29,7 @@ namespace ExpenseM.Views
       InitializeComponent();
       this.DataContext = this;
       this.WindowTitle = "Contacts";
-      ContactsList = userModel.FetchUsers((int)UserTypes.Contact);
+      ContactsList = userModel.FetchUsers((int)UserTypes.Contact); // load contacts
     }
     public List<UserModel> ContactsList { get; set; }
   }

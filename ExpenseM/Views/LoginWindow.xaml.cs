@@ -27,13 +27,7 @@ namespace ExpenseM.Views
     public LoginWindow()
     {
       InitializeComponent();
-      // remove this values
-      this.UsernameInput.Text = "pesh.com";
-      this.PasswordInput.Password = "123";
-
-
     }
-
 
     private void CreateUserBtn_Click(object sender, RoutedEventArgs e)
     {
@@ -50,15 +44,17 @@ namespace ExpenseM.Views
 
       bool validated = false;
 
+
+      // run validation in a different thread
       await Task.Run(() =>
       {
         try
         {
           validated = user.ValidateUsernamePassword(username, password);
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-          MessageBox.Show(ex.Message);
+          MessageBox.Show(Properties.Resources.SOMETHING_WRONG);
         }
       });
 
@@ -70,9 +66,11 @@ namespace ExpenseM.Views
       }
       else
       {
-        MessageBox.Show("User not found for " + username, this.Title);
+        MessageBox.Show(string.Format(Properties.Resources.USER_NOT_FOUND, username), this.Title);
       }
     }
+
+    // validations
     public void ValidateEmail(object sender, RoutedEventArgs e)
     {
       if (!InputValidations.GetInstance.ValidateEmail(this.UsernameInput.Text))
@@ -88,9 +86,9 @@ namespace ExpenseM.Views
         this.UsernameInput.Background = Brushes.White;
         this.LoginBtn.IsEnabled = true;
       }
-
     }
 
+    // validations
     private void PasswordChanged(object sender, RoutedEventArgs e)
     {
       if (this.PasswordInput.Password.Equals(""))

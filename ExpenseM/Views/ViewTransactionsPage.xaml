@@ -70,12 +70,11 @@
                             Grid.Column="3"
                             CalendarClosed="SetStartDate"
                             DisplayDateEnd="{Binding ToDate}"
-                            SelectedDate="{Binding FromDate, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            SelectedDate="{Binding FromDate, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
             <StackPanel  Grid.Column="4"
                          Orientation="Vertical"
-                         HorizontalAlignment="Center"
->
+                         HorizontalAlignment="Center">
                 <Label Content="To" />
                 <DatePicker x:Name="EndDatePicker"
                             Grid.Column="4"

@@ -14,9 +14,6 @@
         xmlns:properties="clr-namespace:ExpenseM.Properties">
     <Grid>
         <Grid.Background>
-
-            <!--<ImageBrush ImageSource="{Binding IMG_BACKGROUND, Source={StaticResource ResourceKey=ApplicationResources}}"/>-->
-
             <SolidColorBrush Color="AliceBlue" />
         </Grid.Background>
 
@@ -58,13 +55,13 @@
                  TextWrapping="Wrap"
                  Text="{Binding ElementName=TestUC,Path=UserInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  VerticalAlignment="Top"
-                 Margin="226.2,53,95.6,0"
-                 TextChanged="ValidateEmail"/>
+                 Margin="226.2,53,72.6,0"
+                 TextChanged="ValidateEmail" />
         <PasswordBox x:Name="PasswordInput"
                      Grid.Column="1"
                      Grid.Row="1"
                      Height="23"
-                     Margin="226.2,101,95.6,160"
+                     Margin="226.2,101,72.6,160"
                      PasswordChanged="PasswordChanged" />
         <Button x:Name="LoginBtn"
                 Content="Login"
@@ -93,7 +90,7 @@
                Grid.Row="1"
                FontSize="45"
                VerticalAlignment="Top"
-               FontStyle="Italic"/>
+               FontStyle="Italic" />
 
     </Grid>
 

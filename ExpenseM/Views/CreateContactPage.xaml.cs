@@ -9,7 +9,6 @@ using ExpenseM.Models;
 using System;
 
 
-// TODO populate contact data when it loading
 namespace ExpenseM.Views
 {
   /// <summary>
@@ -20,6 +19,9 @@ namespace ExpenseM.Views
     UserModel contact = new UserModel();
 
     List<LabeledTextbox> labeledTextboxes = new List<LabeledTextbox>();
+    ExpenseMDataSet tempUserData = new ExpenseMDataSet();
+
+    // create label name objects using a struct
     List<LabelWithKey> labelNames = new List<LabelWithKey>
         {
             new LabelWithKey("fName",Properties.Resources.FIRST_NAME),
@@ -32,11 +34,12 @@ namespace ExpenseM.Views
     public CreateContactPage()
     {
       InitializeComponent();
+
       this.WindowTitle = "Create Contacts";
       this.DataContext = this;
-
       contact.UserType = 0;
       this.CreateContactBtn.IsEnabled = false;
+
       foreach (LabelWithKey element in labelNames)
       {
         LabeledTextbox labeledTextbox = new LabeledTextbox();
@@ -49,14 +52,14 @@ namespace ExpenseM.Views
 
         Thickness thickness = new Thickness();
         thickness.Top = 10;
-        labeledTextbox.Margin = thickness;
 
+        labeledTextbox.Margin = thickness;
         labeledTextboxes.Add(labeledTextbox);
 
         switch (element.Key)
         {
           case "email":
-            labeledTextbox.UserInputbox.TextChanged += ValidateEmail;
+            labeledTextbox.UserInputbox.TextChanged += ValidateEmail; //Adding validation functionality to elements
             break;
           default:
             break;
@@ -66,11 +69,12 @@ namespace ExpenseM.Views
       this.PopulateDataToForm();
     }
 
+    // populate cached data to the form
     private void PopulateDataToForm()
     {
-      Console.WriteLine("==============================================");
       UserModel tempUserData = new UserModel().getTempContactDataFromFile();
-
+      
+      // set chached data to input fields
       if (tempUserData != null)
       {
         foreach (LabeledTextbox item in this.labeledTextboxes)
@@ -99,6 +103,7 @@ namespace ExpenseM.Views
       }
     }
 
+    // Write data to a file while user typing
     private void UserInput_LostFocus(object sender, RoutedEventArgs e)
     {
       UserModel tempUserModel = new UserModel();
@@ -130,6 +135,7 @@ namespace ExpenseM.Views
       tempUserModel.AddTempUserDataToFile(Properties.Resources.PATH_CONTACT_USER_DATA);
     }
 
+    // Clear input fields
     private void ClearBtn_Click(object sender, RoutedEventArgs e)
     {
       foreach (LabeledTextbox item in labeledTextboxes)
@@ -164,6 +170,7 @@ namespace ExpenseM.Views
       }
     }
 
+    // Check null values in user inputs
     public bool NullCheck()
     {
       int nullCount = 0;
@@ -183,15 +190,13 @@ namespace ExpenseM.Views
       return true;
     }
 
-    ExpenseMDataSet tempUserData = new ExpenseMDataSet();
-
+    // Save contact data
     private void CreateContactBtn_Click(object sender, RoutedEventArgs e)
     {
       try
       {
         foreach (LabeledTextbox element in labeledTextboxes)
         {
-          // TODO -  add validation logics here
           if (element.Name == "email"
             && InputValidations.GetInstance.ValidateEmail(element.UserInputbox.Text))
           {
@@ -224,6 +229,7 @@ namespace ExpenseM.Views
       }
     }
 
+    // Restore cached data
     private void RestoreBtn_Click(object sender, RoutedEventArgs e)
     {
       PopulateDataToForm();

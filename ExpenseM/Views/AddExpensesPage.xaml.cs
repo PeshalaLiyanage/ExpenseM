@@ -23,13 +23,12 @@ namespace ExpenseM.Views
   /// </summary>
   public partial class AddExpensesPage : Page
   {
-
     private int totalRowsCount = 1;
     private const int MaxRowsCount = 12;
     Button saveBtn = new Button();
 
     List<ExpensesAddRow> expensesAddRows = new List<ExpensesAddRow>();
-
+    List<TransactionModel> transactionsList;
 
     public AddExpensesPage()
     {
@@ -41,7 +40,7 @@ namespace ExpenseM.Views
       saveBtn.HorizontalAlignment = HorizontalAlignment.Center;
       saveBtn.Margin = thickness;
       saveBtn.Width = 200;
-      saveBtn.Click += SaveBtn_Click;
+      saveBtn.Click += SaveBtn_Click; // link button click functionality through delegate functionality
       this.AddRows();
     }
     private void AddRowsBtn_Click(object sender, RoutedEventArgs e)
@@ -49,6 +48,7 @@ namespace ExpenseM.Views
       this.AddRows();
     }
 
+    // Dynamically adding rows
     private void AddRows()
     {
       int rowsCount = int.Parse(this.RowCountBox.Text);
@@ -61,19 +61,17 @@ namespace ExpenseM.Views
         totalRowsCount += rowsCount;
         for (int i = 0; i < rowsCount; i++)
         {
-          ExpensesAddRow expensesAddRow = new ExpensesAddRow();
+          ExpensesAddRow expensesAddRow = new ExpensesAddRow(); // create user controller rows
 
           expensesAddRow.Margin = thickness;
           expensesAddRow.SelectedStartDate = DateTime.Now;
           expensesAddRows.Add(expensesAddRow);
-          this.MainPannel.Children.Add(expensesAddRow);
+          this.MainPannel.Children.Add(expensesAddRow); // add rows to the stack pannel
         }
 
         if (this.MainPannel.Children.Contains(saveBtn))
         {
-
-          this.MainPannel.Children.Remove(saveBtn);
-
+          this.MainPannel.Children.Remove(saveBtn); // remove save button duplications
         }
 
         this.MainPannel.Children.Add(saveBtn);
@@ -87,8 +85,6 @@ namespace ExpenseM.Views
       }
     }
 
-    List<TransactionModel> transactionsList;
-
     private async void SaveBtn_Click(object sender, RoutedEventArgs e)
     {
       try
@@ -96,6 +92,7 @@ namespace ExpenseM.Views
         transactionsList = new List<TransactionModel>();
         foreach (ExpensesAddRow row in expensesAddRows)
         {
+          // create transaction objects
           transactionsList.Add(new TransactionModel(
             row.SelectedContact,
             int.Parse(row.Amount),
@@ -107,21 +104,23 @@ namespace ExpenseM.Views
             ));
         }
         TransactionModel transactionModel = new TransactionModel();
+
+        // run the transactions save functionality in a different thread
         bool result = await Task.Run(() => transactionModel.SaveTransactions(transactionsList));
 
 
         if (result)
         {
-          MessageBox.Show("Saved");
+          MessageBox.Show(Properties.Resources.DATA_SAVE_SUCCESS);
         }
         else
         {
-          MessageBox.Show("Failed");
+          MessageBox.Show(Properties.Resources.SOMETHING_WRONG);
         }
       }
-      catch (Exception ex)
+      catch (Exception)
       {
-        MessageBox.Show(ex.Message);
+        MessageBox.Show(Properties.Resources.SOMETHING_WRONG);
       }
     }
   }

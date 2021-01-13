@@ -23,7 +23,6 @@ namespace ExpenseM.Views
   /// </summary>
   public partial class ViewTransactionsPage : Page, INotifyPropertyChanged
   {
-
     TransactionModel transactionModel = new TransactionModel();
 
     public event PropertyChangedEventHandler PropertyChanged;
@@ -37,6 +36,8 @@ namespace ExpenseM.Views
       TransactionList= transactionModel.getTransactions();
       tempTransactionList = TransactionList;
     }
+
+    // notify property changes
     protected void OnPropertyChanged(string property)
     {
       PropertyChangedEventHandler handler = PropertyChanged;
@@ -59,7 +60,7 @@ namespace ExpenseM.Views
     {
       FromDate = (DateTime)this.StartDatePicker.SelectedDate;
       TransactionList = transactionModel.getTransactions(FromDate,ToDate);
-      OnPropertyChanged("TransactionList");
+      OnPropertyChanged("TransactionList"); // notify changes
       OnPropertyChanged("FromDate");
     }
 
@@ -72,7 +73,7 @@ namespace ExpenseM.Views
     }
 
   
-
+    // filter transactions
     private void SelectType(object sender, RoutedEventArgs e)
     {
       if (ExpenseChecked == true && IncomeChecked == true || ExpenseChecked == false && IncomeChecked == false)
@@ -106,6 +107,7 @@ namespace ExpenseM.Views
       return tempList;
     }
 
+    // fetch recurring transactions
     private  void RecurringCheckbox_Click(object sender, RoutedEventArgs e)
     {
       if (RecurringChecked == true)
