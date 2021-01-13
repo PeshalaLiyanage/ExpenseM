@@ -40,6 +40,11 @@ namespace ExpenseM.Utilities
     public DateTime CurrentMonthEndDate() => monthEndDate;
 
     public DateTime GetMonthStartDate(DateTime date) => new DateTime(date.Year, date.Month, 1);
+
+    public int GetMonthDifference(DateTime startDate, DateTime endDate)
+    {
+      return Math.Abs((startDate.Month - endDate.Month) + 12 * (startDate.Year - endDate.Year));
+    }
    
   }
 }

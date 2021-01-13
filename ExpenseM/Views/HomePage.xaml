@@ -82,6 +82,7 @@
                                Width="50" />
                         <DatePicker Width="200"
                                     Name="FromDatePicker"
+                                    Text="Select a date"
                                     CalendarClosed="FromDatePicker_CalendarClosed"
                                     DisplayDateEnd="{Binding ToDate}"
                                     SelectedDate="{Binding FromDate, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
@@ -93,6 +94,7 @@
                                Margin="30,0,10,0" />
                         <DatePicker Width="200"
                                     Name="ToDatePicker"
+                                    Text="Select a date"
                                     CalendarClosed="ToDatePicker_CalendarClosed"
                                     DisplayDateStart="{Binding FromDate}"
                                     SelectedDate="{Binding ToDate, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
@@ -131,6 +133,8 @@
             <TextBlock Text="Status : " />
 
             <StatusBarItem Content="{Binding StatusMessage}" />
+           <!--TODO progress bar-->
+            <!--<ProgressBar />-->
         </StatusBar>
 
     </Grid>

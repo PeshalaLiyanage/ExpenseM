@@ -66,12 +66,32 @@ namespace ExpenseM.Views
 
     private void FromDatePicker_CalendarClosed(object sender, RoutedEventArgs e)
     {
-
+      OnPropertyChanged("FromDate");
+      if (FromDate > DateUtilities.GetInstance.CurrentMonthEndDate()
+        || ToDate > DateUtilities.GetInstance.CurrentMonthEndDate())
+      {
+        PredictFinancialStatus();
+      }
+      else
+      {
+        CalculateFInancialStatus();
+      }
     }
 
     private void ToDatePicker_CalendarClosed(object sender, RoutedEventArgs e)
     {
+      OnPropertyChanged("ToDate");
 
+      if (FromDate > DateUtilities.GetInstance.CurrentMonthEndDate() 
+        || ToDate > DateUtilities.GetInstance.CurrentMonthEndDate())
+      {
+        PredictFinancialStatus();
+      }
+      else
+      {
+        CalculateFInancialStatus();
+      }
+      
     }
 
     TransactionModel transactionModel = new TransactionModel();
@@ -79,6 +99,8 @@ namespace ExpenseM.Views
     public List<TransactionModel> RecurringTransactionList { get; set; }
     private void CalculateFInancialStatus()
     {
+      StatusMessage = "Processing";
+      OnPropertyChanged("StatusMessage");
       CommonTransactionList = FilterOneTimeTransactions(transactionModel.getTransactions(FromDate, ToDate));
       RecurringTransactionList = transactionModel.getTransactions(
         default(DateTime),
@@ -114,9 +136,55 @@ namespace ExpenseM.Views
 
       TotalExpenses = totalExpensesForMonth;
       TotalIncome = totalIncomeForMonth;
+      StatusMessage = "Ready";
+      OnPropertyChanged("StatusMessage");
 
       OnPropertyChanged("TotalExpenses");
       OnPropertyChanged("TotalIncome");
+
+    }
+
+    private void PredictFinancialStatus()
+    {
+      StatusMessage = "Predicting";
+      OnPropertyChanged("StatusMessage");
+
+      CommonTransactionList = FilterOneTimeTransactions(transactionModel.getTransactions(default, default));
+
+      DateTime allRecordsBeginDate = DateTime.Today;
+      DateTime allRecordsEndDate = default;
+
+      int totalExpenses = 0;
+      int totalIncome = 0;
+      int averageIncomePerMonth = 0;
+      int averageExpensePerMonth= 0;
+
+      foreach (TransactionModel item in CommonTransactionList)
+      {
+        if (item.StartDate< allRecordsBeginDate)
+        {
+          allRecordsBeginDate = item.StartDate;
+        }
+
+        if (item.StartDate> allRecordsEndDate)
+        {
+          allRecordsEndDate = item.StartDate;
+        }
+        if (item.TransactionType == EnumTransactionType.Expense)
+        {
+          totalExpenses += item.Amount;
+        }
+        if (item.TransactionType == EnumTransactionType.Income)
+        {
+          totalIncome += item.Amount;
+        }
+      }
+
+      int monthDifference = DateUtilities.GetInstance.GetMonthDifference(allRecordsBeginDate, allRecordsEndDate);
+
+      averageIncomePerMonth = totalIncome / monthDifference;
+      averageExpensePerMonth = totalExpenses / monthDifference;
+
 
     }
 

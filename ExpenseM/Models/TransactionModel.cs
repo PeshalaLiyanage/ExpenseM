@@ -134,53 +134,52 @@ namespace ExpenseM.Models
 
 
 
-        dynamic records = fromDate != default(DateTime)
+        dynamic records =
+          fromDate != default(DateTime)
           && toDate != default(DateTime)
           && recurring == true
-          ? DBConnection.Connection.Transactions.Where(
+        ? DBConnection.Connection.Transactions.Where(
           transaction => transaction.StartDate >= fromDate
           && transaction.StartDate <= toDate
           && transaction.RecurrentStatus == 1
           ).ToList()
         : fromDate != default(DateTime)
-        && toDate != default(DateTime)
+          && toDate != default(DateTime)
         ? DBConnection.Connection.Transactions.Where(
-        transaction => transaction.StartDate >= fromDate
-        && transaction.StartDate <= toDate
+          transaction => transaction.StartDate >= fromDate
+          && transaction.StartDate <= toDate
         ).ToList()
         : fromDate != default(DateTime)
-        && recurring == true
+          && recurring == true
         ? DBConnection.Connection.Transactions.Where(
-        transaction => transaction.StartDate >= fromDate
-         && transaction.RecurrentStatus == 1
+          transaction => transaction.StartDate >= fromDate
+          && transaction.RecurrentStatus == 1
         ).ToList()
         : fromDate != default(DateTime)
         ? DBConnection.Connection.Transactions.Where(
-        transaction => transaction.StartDate >= fromDate
+          transaction => transaction.StartDate >= fromDate
         ).ToList()
         : futureRecurring == true   //Fetch records for financial status calculation
-        && toDate != default(DateTime)
-        && recurring == true
+          && toDate != default(DateTime)
+          && recurring == true
         ? DBConnection.Connection.Transactions.Where(
-        transaction => transaction.EndDate >= toDate
-         && transaction.RecurrentStatus == 1
+          transaction => transaction.EndDate >= toDate
+          && transaction.RecurrentStatus == 1
         ).ToList()
         : toDate != default(DateTime)
-        && recurring == true
+          && recurring == true
         ? DBConnection.Connection.Transactions.Where(
-        transaction => transaction.StartDate <= toDate
-         && transaction.RecurrentStatus == 1
+          transaction => transaction.StartDate <= toDate
+          && transaction.RecurrentStatus == 1
         ).ToList()
-        : toDate != default(DateTime) ?
-         DBConnection.Connection.Transactions.Where(
-        transaction => transaction.StartDate <= toDate
+        : toDate != default(DateTime)
+        ? DBConnection.Connection.Transactions.Where(
+          transaction => transaction.StartDate <= toDate
         ).ToList()
         : recurring == true ?
-        DBConnection.Connection.Transactions.Where(
-        transaction => transaction.RecurrentStatus == 1
+          DBConnection.Connection.Transactions.Where(
+          transaction => transaction.RecurrentStatus == 1
         ).ToList()
-
-
         : DBConnection.Connection.Transactions.ToList();
 
         foreach (Transaction item in records)
