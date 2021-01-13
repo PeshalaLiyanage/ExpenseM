@@ -185,6 +185,44 @@ namespace ExpenseM.Views
       averageIncomePerMonth = totalIncome / monthDifference;
       averageExpensePerMonth = totalExpenses / monthDifference;
 
+      int recurrentIncomeAmount = 0;
+      int recurrentExpenseAmount = 0;
+     // int userSelectedDateDifference = DateUtilities.GetInstance.GetMonthDifference(new DateTime(2021,01,01), new DateTime(2021, 02, 20));
+      int userSelectedDateDifference = DateUtilities.GetInstance.GetMonthDifference(FromDate, ToDate);
+
+      foreach (TransactionModel item in RecurringTransactionList)
+      {
+
+        if (item.TransactionType == EnumTransactionType.Income)
+        {
+          if (item.StartDate < FromDate)
+          {
+            recurrentIncomeAmount += item.Amount * userSelectedDateDifference;
+          }
+          else
+          {
+            recurrentIncomeAmount += item.Amount * DateUtilities.GetInstance.GetMonthDifference(DateUtilities.GetInstance.GetMonthStartDate(item.StartDate), DateUtilities.GetInstance.GetMonthEndDate(item.EndDate));
+          }
+        }
+        else
+        {
+          if (item.StartDate < FromDate)
+          {
+            recurrentExpenseAmount += item.Amount * userSelectedDateDifference;
+          }
+          else
+          {
+            recurrentExpenseAmount += item.Amount * DateUtilities.GetInstance.GetMonthDifference(DateUtilities.GetInstance.GetMonthStartDate(item.StartDate), DateUtilities.GetInstance.GetMonthEndDate(item.EndDate));
+          }
+        }
+
+      }
+
+      TotalIncome = averageIncomePerMonth * userSelectedDateDifference + recurrentIncomeAmount;
+      TotalExpenses = averageExpensePerMonth * userSelectedDateDifference + recurrentExpenseAmount;
+
+      OnPropertyChanged("TotalIncome");
+      OnPropertyChanged("TotalExpenses");
 
     }
 
