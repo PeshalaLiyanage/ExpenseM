@@ -64,6 +64,11 @@ namespace ExpenseM.Views
       this.NavigationService.Navigate(new ViewTransactionsPage());
     }
 
+    private void ContactsViewNav_Click(object sender, RoutedEventArgs e)
+    {
+      this.NavigationService.Navigate(new ViewContactsPage());
+    }
+
     private void FromDatePicker_CalendarClosed(object sender, RoutedEventArgs e)
     {
       OnPropertyChanged("FromDate");
@@ -138,7 +143,6 @@ namespace ExpenseM.Views
       TotalIncome = totalIncomeForMonth;
       StatusMessage = "Ready";
       OnPropertyChanged("StatusMessage");
-
       OnPropertyChanged("TotalExpenses");
       OnPropertyChanged("TotalIncome");
 
@@ -146,7 +150,7 @@ namespace ExpenseM.Views
 
     private void PredictFinancialStatus()
     {
-      StatusMessage = "Predicting";
+      StatusMessage = Properties.Resources.PREDICTING;
       OnPropertyChanged("StatusMessage");
 
       CommonTransactionList = FilterOneTimeTransactions(transactionModel.getTransactions(default, default));
@@ -187,7 +191,6 @@ namespace ExpenseM.Views
 
       int recurrentIncomeAmount = 0;
       int recurrentExpenseAmount = 0;
-     // int userSelectedDateDifference = DateUtilities.GetInstance.GetMonthDifference(new DateTime(2021,01,01), new DateTime(2021, 02, 20));
       int userSelectedDateDifference = DateUtilities.GetInstance.GetMonthDifference(FromDate, ToDate);
 
       foreach (TransactionModel item in RecurringTransactionList)
@@ -223,7 +226,8 @@ namespace ExpenseM.Views
 
       OnPropertyChanged("TotalIncome");
       OnPropertyChanged("TotalExpenses");
-
+      StatusMessage = Properties.Resources.PREDICTION_SUCCESS;
+      OnPropertyChanged("StatusMessage");
     }
 
     private List<TransactionModel> FilterOneTimeTransactions(List<TransactionModel> transactionList)
@@ -237,8 +241,9 @@ namespace ExpenseM.Views
           tempTransactions.Add(transaction);
         }
       }
-
       return tempTransactions;
     }
+
+    
   }
 }

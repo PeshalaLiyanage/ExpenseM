@@ -197,6 +197,24 @@ namespace ExpenseM.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Predicting.
+        /// </summary>
+        public static string PREDICTING {
+            get {
+                return ResourceManager.GetString("PREDICTING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prediction success.
+        /// </summary>
+        public static string PREDICTION_SUCCESS {
+            get {
+                return ResourceManager.GetString("PREDICTION_SUCCESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total Expenses.
         /// </summary>
         public static string TOTAL_EXPENSES {

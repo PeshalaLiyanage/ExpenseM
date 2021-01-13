@@ -49,13 +49,15 @@
                     RenderTransformOrigin="-6.549,1.081"
                     Height="40"
                     Click="NavViewTransactions_Click" />
-            <Button Content="View Contacts"
+            <Button x:Name="ContactsViewNav"
+                    Content="View Contacts"
                     HorizontalAlignment="Left"
                     Margin="10,10,0,0"
                     VerticalAlignment="Top"
                     Width="209"
                     RenderTransformOrigin="-6.549,1.081"
-                    Height="40" />
+                    Height="40"
+                    Click="ContactsViewNav_Click" />
 
         </StackPanel>
 

@@ -80,7 +80,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Entities\ExpenseMDataSet.cs">
       <DependentUpon>ExpenseMDataSet.xsd</DependentUpon>
     </Compile>
@@ -153,6 +152,9 @@
     <Compile Include="Entities\User.cs">
       <DependentUpon>ExpenseMDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Views\ViewContactsPage.xaml.cs">
+      <DependentUpon>ViewContactsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ViewTransactionsPage.xaml.cs">
       <DependentUpon>ViewTransactionsPage.xaml</DependentUpon>
     </Compile>
@@ -189,6 +191,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ViewContactsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

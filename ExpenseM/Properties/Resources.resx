@@ -175,6 +175,12 @@
     <value>Phone Number</value>
     <comment>Form input labels</comment>
   </data>
+  <data name="PREDICTING" xml:space="preserve">
+    <value>Predicting</value>
+  </data>
+  <data name="PREDICTION_SUCCESS" xml:space="preserve">
+    <value>Prediction success</value>
+  </data>
   <data name="TOTAL_EXPENSES" xml:space="preserve">
     <value>Total Expenses</value>
   </data>
