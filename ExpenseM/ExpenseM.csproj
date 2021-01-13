@@ -92,11 +92,7 @@
     <Compile Include="UserControls\LabeledTextbox.xaml.cs">
       <DependentUpon>LabeledTextbox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\NavBar.xaml.cs">
-      <DependentUpon>NavBar.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Utilities\DateUtilities.cs" />
-    <Compile Include="Utilities\Delegates.cs" />
     <Compile Include="Utilities\Enums.cs" />
     <Compile Include="Utilities\FileUtilities.cs" />
     <Compile Include="Utilities\InputValidations.cs" />
@@ -166,10 +162,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\NavBar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\AddExpensesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -220,6 +212,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EntityDeploy Include="Entities\ExpenseMDataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -272,8 +265,6 @@
       <LastGenOutput>ExpenseMDataModel.cs</LastGenOutput>
       <DependentUpon>ExpenseMDataModel.edmx</DependentUpon>
     </Content>
-    <None Include="Resources\Image1.bmp" />
-    <None Include="Resources\watermark.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

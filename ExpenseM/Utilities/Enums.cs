@@ -12,7 +12,6 @@ namespace ExpenseM.Utilities
     Admin
   }
 
-
   public enum EnumTransactionType
   {
     Income,

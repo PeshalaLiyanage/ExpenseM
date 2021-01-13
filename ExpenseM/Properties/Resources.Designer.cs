@@ -133,16 +133,6 @@ namespace ExpenseM.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap IMG_BACKGROUND {
-            get {
-                object obj = ResourceManager.GetObject("IMG_BACKGROUND", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Last Name.
         /// </summary>
         public static string LAST_NAME {

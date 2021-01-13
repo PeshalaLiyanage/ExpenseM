@@ -18,7 +18,7 @@ using ExpenseM.Utilities;
 namespace ExpenseM.UserControls
 {
   /// <summary>
-  /// Interaction logic for ExpensesAddRow.xaml
+  /// User controller - transaction add rows
   /// </summary>
   public partial class ExpensesAddRow : UserControl
   {
@@ -26,7 +26,6 @@ namespace ExpenseM.UserControls
     List<UserModel> contacts = new List<UserModel>();
     public dynamic SelectedContact { get; set; }
     public dynamic SelectedTransactionType { get; set; }
- 
 
     public string Amount { get; set; }
     public string Description { get; set; }
@@ -47,12 +46,10 @@ namespace ExpenseM.UserControls
       set { endDate = value; }
     }
 
-
-
     public ExpensesAddRow()
     {
       InitializeComponent();
-    
+
       this.ContactCombo.ItemsSource = contact.FetchUsers((int)UserTypes.Contact);
       this.TransactionTypeCombo.ItemsSource = new List<TransactionTypes>()
       {
@@ -62,25 +59,5 @@ namespace ExpenseM.UserControls
       this.DataContext = this;
 
     }
-
-    //private void ContactCombo_SeletctionChanged(object sender, SelectionChangedEventArgs e)
-    //{
-    //  this.SelectedContact = this.ContactCombo.SelectedItem;
-    //}
-
-    //private void TransactionTypeCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    //{
-    //  this.SelectedTransactionType = this.TransactionTypeCombo.SelectedItem;
-    //}
-
-    //private void StartDate_CalendarClosed(object sender, RoutedEventArgs e)
-    //{
-    // // this.SelectedStartDate = this.StartDate.SelectedDate.Value;
-    //}
-
-    //private void EndDate_CalendarClosed(object sender, RoutedEventArgs e)
-    //{
-    // // this.SelectedEndDate = this.EndDate.SelectedDate == null? DateTime.Now: this.EndDate.SelectedDate.Value;
-    //}
   }
 }

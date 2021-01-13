@@ -6,21 +6,19 @@ using System.Threading.Tasks;
 
 namespace ExpenseM.Utilities
 {
-    public struct LabelWithKey{
-      
-        public LabelWithKey(String key, String labelName)
-        {
-           Key = key;
-            LabelName = labelName;
-        }
-
-        public String Key { get; set; }
-        public String LabelName { get; set; }
+  public struct LabelWithKey
+  {
+    public LabelWithKey(String key, String labelName)
+    {
+      Key = key;
+      LabelName = labelName;
     }
+    public String Key { get; set; }
+    public String LabelName { get; set; }
+  }
 
   public struct TransactionTypes
   {
-
     public TransactionTypes(int key, String type)
     {
       Key = key;

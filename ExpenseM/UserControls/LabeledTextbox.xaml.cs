@@ -16,34 +16,24 @@ using ExpenseM.Utilities;
 
 namespace ExpenseM.UserControls
 {
-    /// <summary>
-    /// Interaction logic for LabeledTextbox.xaml
-    /// </summary>
-    public partial class LabeledTextbox : UserControl
+  /// <summary>
+  /// Interaction logic for LabeledTextbox.xaml
+  /// </summary>
+  public partial class LabeledTextbox : UserControl
+  {
+
+    public LabeledTextbox()
     {
+      InitializeComponent();
+      this.DataContext = this;
+    }
 
-      
+    public string LabelName { get; set; }
+    public string TextboxInput { get; set; }
 
-        public LabeledTextbox()
-        {
-            InitializeComponent();
-            this.DataContext = this;
-        }
+    public string TitleLength { get; set; }
 
-        public string LabelName { get; set; }
-        public string TextboxInput { get; set; }
-        
-        public string TitleLength { get; set; }
-
-        public int MaxLength { get; set; }
-
-        public LostFocusTextbox lost1 { set; get; }
-
-       
-        private void mybutton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+    public int MaxLength { get; set; }
 
     private void Textbox_MouseEnter(object sender, MouseEventArgs e)
     {

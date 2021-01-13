@@ -37,7 +37,6 @@
                   Name="TransactionTypeCombo"
                   IsReadOnly="True"
                   IsEditable="True"
-                  
                   SelectedItem="{Binding SelectedTransactionType, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>

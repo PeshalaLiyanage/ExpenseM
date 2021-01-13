@@ -83,6 +83,7 @@ namespace ExpenseM.Models
       set { firstName = value; }
     }
 
+    // save user data in database
     public void AddUser()
     {
       String filePath = userType == 1
@@ -101,7 +102,7 @@ namespace ExpenseM.Models
         user.PhoneNo = phoneNumber;
         user.Email = email;
         user.Password = password;
-        user.UserType = (short)userType; // use an enum for this
+        user.UserType = (short)userType;
         user.CreatedAt = DateTime.Now;
 
         DBConnection.Connection.Users.Add(user);
@@ -110,6 +111,7 @@ namespace ExpenseM.Models
       }
       catch (Exception)
       {
+        // retry to save data by reading data from file if the saving process failed
         if (_retryCount < 10)
         {
           tempUserData.ReadXml(filePath);
@@ -136,57 +138,7 @@ namespace ExpenseM.Models
       }
     }
 
-
-    //public void _AddUser()
-    //{
-    //  try
-    //  {
-    //    tempUserData.User.AddUserRow(firstName, lastName, address, phoneNumber, email, password);
-    //    FileUtilities.GetInstance.WriteToFile(tempUserData, Properties.Resources.PATH_ADMIN_USER_DATA);
-
-    //    User adminUser = new User();
-
-    //    adminUser.FirstName = firstName;
-    //    adminUser.LastName = lastName;
-    //    adminUser.Address = address;
-    //    adminUser.PhoneNo = phoneNumber;
-    //    adminUser.Email = email;
-    //    adminUser.Password = password;
-    //    adminUser.UserType = 1; // use an enum for this
-    //    adminUser.CreatedAt = DateTime.Now;
-
-    //    DBConnection.Connection.Users.Add(adminUser);
-    //    DBConnection.Connection.SaveChanges();
-
-    //  }
-    //  catch (Exception e)
-    //  {
-    //    if (_retryCount < 10)
-    //    {
-    //      tempUserData.ReadXml(Properties.Resources.PATH_ADMIN_USER_DATA);
-    //      ExpenseMDataSet.UserRow userData = tempUserData.User[0];
-
-    //      firstName = userData.FirstName;
-    //      lastName = userData.LastName;
-    //      address = userData.Address;
-    //      phoneNumber = userData.PhoneNumber;
-    //      email = userData.Email;
-    //      password = userData.Password;
-
-    //      _retryCount++;
-    //      AddUser();
-    //    }
-    //    else
-    //    {
-    //      throw new Exception("User " + firstName + " saving failed");
-    //    }
-    //  }
-    //  finally
-    //  {
-    //    FileUtilities.GetInstance.DeleteFile(Properties.Resources.PATH_ADMIN_USER_DATA);
-    //  }
-    //}
-
+    // Get cahced user data from file
     public UserModel getTempUserDataFromFile()
     {
       if (File.Exists(Properties.Resources.PATH_USER_TEMP_DATA) == true)
@@ -204,6 +156,7 @@ namespace ExpenseM.Models
       return null;
     }
 
+    // Get cahced contacts data from file
     public UserModel getTempContactDataFromFile()
     {
       if (File.Exists(Properties.Resources.PATH_CONTACT_USER_DATA) == true)
@@ -221,6 +174,7 @@ namespace ExpenseM.Models
       return null;
     }
 
+    // Write cache files
     public void AddTempUserDataToFile(string path)
     {
       Task.Run(() =>
@@ -232,7 +186,6 @@ namespace ExpenseM.Models
       });
 
     }
-
 
     public bool ValidateUsernamePassword(String username, String password)
     {
@@ -251,17 +204,12 @@ namespace ExpenseM.Models
       }
     }
 
-    public bool CreateContacts()
-    {
-
-      return true;
-    }
-
+    // Fetch users
     public List<UserModel> FetchUsers(int type)
     {
       try
       {
-       List<UserModel>  users = new List<UserModel>();
+        List<UserModel> users = new List<UserModel>();
 
         List<User> records = DBConnection.Connection.Users.Where(
             user => user.UserType == type
@@ -320,9 +268,4 @@ namespace ExpenseM.Models
       }
     }
   }
-
- 
-
-
-
 }

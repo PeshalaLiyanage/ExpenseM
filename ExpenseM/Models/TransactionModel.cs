@@ -32,7 +32,14 @@ namespace ExpenseM.Models
     {
     }
 
-    public TransactionModel(UserModel contact, int amount, EnumTransactionType transactionType, int recurrentStatus, string description, DateTime startDate, dynamic endDate)
+    public TransactionModel(
+      UserModel contact,
+      int amount,
+      EnumTransactionType transactionType,
+      int recurrentStatus,
+      string description,
+      DateTime startDate,
+      dynamic endDate)
     {
       Contact = contact;
       Amount = amount;
@@ -42,7 +49,6 @@ namespace ExpenseM.Models
       StartDate = startDate;
       EndDate = endDate;
     }
-
 
     public bool SaveTransactions(List<TransactionModel> transactions = null)
     {
@@ -71,49 +77,20 @@ namespace ExpenseM.Models
           DBConnection.Connection.Transactions.Add(transaction);
         }
 
-        //TODO
-        //tempTransactionData.Transaction.WriteXml(Properties.Resources.PATH_TRANSACTION_TEMP_DATA);
-        // FileUtilities.GetInstance.WriteToFile(tempTransactionData, Properties.Resources.PATH_TRANSACTION_TEMP_DATA);
-
-
-
         DBConnection.Connection.SaveChanges();
-
         return true;
 
       }
 
-      catch (Exception ex)
+      catch (Exception)
       {
-
         tempTransactionData.ReadXml(Properties.Resources.PATH_TRANSACTION_TEMP_DATA);
-        //ExpenseMDataSet.UserRow userData = tempTransactionData.User[0];
         ExpenseMDataSet.TransactionDataTable transactionRows = tempTransactionData.Transaction;
-
-        List<TransactionModel> transactionModels = new List<TransactionModel>();
-
-        // TODO - retrying and re populating
-        foreach (ExpenseMDataSet.TransactionRow item in transactionRows)
-        {
-          //transactionModels.Add(new TransactionModel(
-          //  new UserModel(item.Contact.FirstName, item.Contact.LastName, item.Contact.Address,item.Contact.PhoneNumber,item.Contact.Email,item.Contact.UserType),
-          //  item.Amount,
-          //  item.TransactionType,
-          //  item.RecurrentStatus,
-          //  item.Description,
-          //  item.StartDate,
-          //  item.EndDate
-          //  ));
-        }
-
         return false;
       }
-
-
-
-
     }
 
+    // Get transaction functionality
     public List<TransactionModel> getTransactions(
       DateTime fromDate = default(DateTime),
       DateTime toDate = default(DateTime),
@@ -122,18 +99,9 @@ namespace ExpenseM.Models
     {
       try
       {
-
-        Console.WriteLine("====start date:" + fromDate);
-        Console.WriteLine("====end date:" + toDate);
-
-        Console.WriteLine("====recurrring date:" + recurring);
         List<TransactionModel> transactionList = new List<TransactionModel>();
 
-        //fromDate = new DateTime(2021,01,10);
-        //toDate = new DateTime(2021,01,14);
-
-
-
+        // Fetch transactions according to the parameters
         dynamic records =
           fromDate != default(DateTime)
           && toDate != default(DateTime)
@@ -159,7 +127,7 @@ namespace ExpenseM.Models
         ? DBConnection.Connection.Transactions.Where(
           transaction => transaction.StartDate >= fromDate
         ).ToList()
-        : futureRecurring == true   //Fetch records for financial status calculation
+        : futureRecurring == true   // Fetch records for financial status calculation
           && toDate != default(DateTime)
           && recurring == true
         ? DBConnection.Connection.Transactions.Where(
@@ -184,7 +152,6 @@ namespace ExpenseM.Models
 
         foreach (Transaction item in records)
         {
-
           UserModel contact = new UserModel();
 
           transactionList.Add(new TransactionModel(
@@ -199,7 +166,6 @@ namespace ExpenseM.Models
         }
 
         return transactionList;
-
       }
       catch (Exception ex)
       {
