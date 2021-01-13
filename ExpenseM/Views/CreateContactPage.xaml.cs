@@ -33,6 +33,7 @@ namespace ExpenseM.Views
     {
       InitializeComponent();
       this.WindowTitle = "Create Contacts";
+      this.DataContext = this;
 
       contact.UserType = 0;
       this.CreateContactBtn.IsEnabled = false;
@@ -62,16 +63,17 @@ namespace ExpenseM.Views
 
         }
       }
-      PopulateDataToForm();
+      this.PopulateDataToForm();
     }
 
     private void PopulateDataToForm()
     {
+      Console.WriteLine("==============================================");
       UserModel tempUserData = new UserModel().getTempContactDataFromFile();
 
       if (tempUserData != null)
       {
-        foreach (LabeledTextbox item in labeledTextboxes)
+        foreach (LabeledTextbox item in this.labeledTextboxes)
         {
           switch (item.Name)
           {
@@ -220,6 +222,11 @@ namespace ExpenseM.Views
       {
         MessageBox.Show(Properties.Resources.SOMETHING_WRONG);
       }
+    }
+
+    private void RestoreBtn_Click(object sender, RoutedEventArgs e)
+    {
+      PopulateDataToForm();
     }
   }
 }

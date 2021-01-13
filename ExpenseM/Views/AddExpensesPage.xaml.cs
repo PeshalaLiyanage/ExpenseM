@@ -35,16 +35,14 @@ namespace ExpenseM.Views
     {
       InitializeComponent();
       this.WindowTitle = "Add Transactions";
-
       Thickness thickness = new Thickness();
       thickness.Top = 10;
       saveBtn.Content = "Save Records";
       saveBtn.HorizontalAlignment = HorizontalAlignment.Center;
       saveBtn.Margin = thickness;
+      saveBtn.Width = 200;
       saveBtn.Click += SaveBtn_Click;
       this.AddRows();
-
-
     }
     private void AddRowsBtn_Click(object sender, RoutedEventArgs e)
     {
