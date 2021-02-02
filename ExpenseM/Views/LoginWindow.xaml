@@ -73,7 +73,8 @@
                 Width="120"
                 Click="LoginBtn_Click"
                 Height="25"
-                RenderTransformOrigin="0.45,0.594" />
+                RenderTransformOrigin="0.45,0.594"
+                IsEnabled="False"/>
         <Button x:Name="CreateUserBtn"
                 Content="Create User"
                 Grid.Column="1"
