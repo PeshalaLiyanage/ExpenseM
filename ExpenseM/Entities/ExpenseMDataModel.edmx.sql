@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/25/2020 21:19:25
--- Generated from EDMX file: C:\Users\pesha\source\repos\ExpenseM\ExpenseM\Entities\ExpenseMDataModel.edmx
+-- Date Created: 01/08/2021 09:07:37
+-- Generated from EDMX file: C:\Users\pesha\Documents\EAD\CW2\repos\ExpenseM\ExpenseM\Entities\ExpenseMDataModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -17,11 +17,20 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_UserTransaction]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Transactions] DROP CONSTRAINT [FK_UserTransaction];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Users];
+GO
+IF OBJECT_ID(N'[dbo].[Transactions]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Transactions];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -35,22 +44,23 @@ CREATE TABLE [dbo].[Users] (
     [Address] nvarchar(max)  NOT NULL,
     [PhoneNo] nvarchar(max)  NOT NULL,
     [Email] nvarchar(max)  NOT NULL,
-    [UserType] nvarchar(max)  NOT NULL,
-    [Password] nvarchar(max)  NOT NULL,
-    [CreatedAt] nvarchar(max)  NOT NULL
+    [UserType] smallint  NOT NULL,
+    [Password] nvarchar(max)  NULL,
+    [CreatedAt] datetime  NOT NULL
 );
 GO
 
 -- Creating table 'Transactions'
 CREATE TABLE [dbo].[Transactions] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [TransactionTyoe] nvarchar(max)  NOT NULL,
-    [Amount] nvarchar(max)  NOT NULL,
-    [RecurrentStatus] nvarchar(max)  NOT NULL,
-    [StartDate] nvarchar(max)  NOT NULL,
-    [EndDate] nvarchar(max)  NOT NULL,
-    [CreatedAt] nvarchar(max)  NOT NULL,
-    [UserId] int  NOT NULL
+    [TransactionTyoe] smallint  NOT NULL,
+    [Amount] smallint  NOT NULL,
+    [RecurrentStatus] smallint  NOT NULL,
+    [StartDate] datetime  NOT NULL,
+    [EndDate] datetime  NULL,
+    [CreatedAt] datetime  NOT NULL,
+    [UserId] int  NOT NULL,
+    [Description] nvarchar(max)  NULL
 );
 GO
 

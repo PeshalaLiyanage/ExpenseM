@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ExpenseM.Properties
-{
-
-
+namespace ExpenseM.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -19,52 +19,278 @@ namespace ExpenseM.Properties
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources
-    {
-
+    public class Resources {
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources()
-        {
+        internal Resources() {
         }
-
+        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager
-        {
-            get
-            {
-                if ((resourceMan == null))
-                {
+        public static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ExpenseM.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture
-        {
-            get
-            {
+        public static global::System.Globalization.CultureInfo Culture {
+            get {
                 return resourceCulture;
             }
-            set
-            {
+            set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        public static string ADDRESS {
+            get {
+                return ResourceManager.GetString("ADDRESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm Password.
+        /// </summary>
+        public static string CONFIRM_PASSWORD {
+            get {
+                return ResourceManager.GetString("CONFIRM_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data saving failed.
+        /// </summary>
+        public static string DATA_SAVE_FAILD {
+            get {
+                return ResourceManager.GetString("DATA_SAVE_FAILD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data saved successfully.
+        /// </summary>
+        public static string DATA_SAVE_SUCCESS {
+            get {
+                return ResourceManager.GetString("DATA_SAVE_SUCCESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string EMAIL {
+            get {
+                return ResourceManager.GetString("EMAIL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \A(?:[a-z0-9!#$%&amp;&apos;*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;&apos;*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z.
+        /// </summary>
+        public static string EMAIL_REGEX {
+            get {
+                return ResourceManager.GetString("EMAIL_REGEX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Financial Status.
+        /// </summary>
+        public static string FINANCIAL_STATUS {
+            get {
+                return ResourceManager.GetString("FINANCIAL_STATUS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First Name.
+        /// </summary>
+        public static string FIRST_NAME {
+            get {
+                return ResourceManager.GetString("FIRST_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Name.
+        /// </summary>
+        public static string LAST_NAME {
+            get {
+                return ResourceManager.GetString("LAST_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can add only maximum {0} records at once..
+        /// </summary>
+        public static string MAXIMUM_RECORDS_MESSAGE {
+            get {
+                return ResourceManager.GetString("MAXIMUM_RECORDS_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        public static string PASSWORD {
+            get {
+                return ResourceManager.GetString("PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to C:\Users\pesha\ExpenseM\AdminUserData.xml.
+        /// </summary>
+        public static string PATH_ADMIN_USER_DATA {
+            get {
+                return ResourceManager.GetString("PATH_ADMIN_USER_DATA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to C:\Users\pesha\ExpenseM\ContactUserData.xml.
+        /// </summary>
+        public static string PATH_CONTACT_USER_DATA {
+            get {
+                return ResourceManager.GetString("PATH_CONTACT_USER_DATA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to C:\Users\pesha\ExpenseM\TransactionTempData.xml.
+        /// </summary>
+        public static string PATH_TRANSACTION_TEMP_DATA {
+            get {
+                return ResourceManager.GetString("PATH_TRANSACTION_TEMP_DATA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to C:\Users\pesha\ExpenseM\UserTempData.xml.
+        /// </summary>
+        public static string PATH_USER_TEMP_DATA {
+            get {
+                return ResourceManager.GetString("PATH_USER_TEMP_DATA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone Number.
+        /// </summary>
+        public static string PHONE_NUMBER {
+            get {
+                return ResourceManager.GetString("PHONE_NUMBER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Predicting.
+        /// </summary>
+        public static string PREDICTING {
+            get {
+                return ResourceManager.GetString("PREDICTING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prediction success.
+        /// </summary>
+        public static string PREDICTION_SUCCESS {
+            get {
+                return ResourceManager.GetString("PREDICTION_SUCCESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Processing.
+        /// </summary>
+        public static string PROCESSING {
+            get {
+                return ResourceManager.GetString("PROCESSING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ready.
+        /// </summary>
+        public static string READY_MESSAGE {
+            get {
+                return ResourceManager.GetString("READY_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Something went wrong. Please try again..
+        /// </summary>
+        public static string SOMETHING_WRONG {
+            get {
+                return ResourceManager.GetString("SOMETHING_WRONG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Expenses.
+        /// </summary>
+        public static string TOTAL_EXPENSES {
+            get {
+                return ResourceManager.GetString("TOTAL_EXPENSES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Income.
+        /// </summary>
+        public static string TOTAL_INCOME {
+            get {
+                return ResourceManager.GetString("TOTAL_INCOME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User successfully added..
+        /// </summary>
+        public static string USER_ADDING_SUCCESS {
+            get {
+                return ResourceManager.GetString("USER_ADDING_SUCCESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User created successfylly.
+        /// </summary>
+        public static string USER_CREATE_SUCCESS {
+            get {
+                return ResourceManager.GetString("USER_CREATE_SUCCESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User not found for {0}.
+        /// </summary>
+        public static string USER_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("USER_NOT_FOUND", resourceCulture);
             }
         }
     }

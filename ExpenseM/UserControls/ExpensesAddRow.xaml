@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="ExpenseM.UserControls.ExpensesAddRow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ExpenseM.UserControls"
+             mc:Ignorable="d"
+             Width="859.2">
+
+    <StackPanel  Orientation="Horizontal"
+                 HorizontalAlignment="Center"
+                 Width="860">
+        <StackPanel.Resources>
+            <local:ExpensesAddRow x:Key="ExpensesRowSource" />
+        </StackPanel.Resources>
+        <!--contact-->
+        <ComboBox Width="120"
+                  Margin="0,0,10,0"
+                  Height="25"
+                  Name="ContactCombo"
+                  AutomationProperties.HelpText="Select Contact"
+                  IsReadOnly="True"
+                  IsEditable="True"
+                  Text="Name"
+                  SelectedItem="{Binding SelectedContact, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <!--type-->
+        <ComboBox Width="100"
+                  Margin="0,0,10,0"
+                  Height="25"
+                  Text="Type"
+                  Name="TransactionTypeCombo"
+                  IsReadOnly="True"
+                  IsEditable="True"
+                  SelectedItem="{Binding SelectedTransactionType, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+
+                    <TextBlock Text="{Binding TransactionType}" />
+
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <!--description-->
+        <TextBox Height="23"
+                 Width="200"
+                 TextWrapping="Wrap"
+                 AcceptsReturn="True"
+                 AcceptsTab="True"
+                 SpellCheck.IsEnabled="True"
+                 Name="DescriptionBox"
+                 Text="{Binding Description, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                 Margin="0,0,10,0" />
+        <!--amount-->
+        <TextBox Height="23"
+                 Width="100"
+                 TextWrapping="Wrap"
+                 Name="AmountBox"
+                 Margin="0,0,10,0"
+                 Text="{Binding Amount, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+        <!--start-->
+        <DatePicker Width="130"
+                    Margin="0,0,10,0"
+                    Height="25"
+                    Name="StartDate"
+                    SelectedDate="{Binding Path=SelectedStartDate ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+
+        </DatePicker>
+        <!--end (if recurrent)-->
+        <DatePicker Width="130"
+                    Height="25"
+                    Margin="0,0,10,0"
+                    Name="EndDate"
+                    Text="End Date"
+                    SelectedDate="{Binding Path=SelectedEndDate ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+    </StackPanel>
+
+</UserControl>

@@ -1,0 +1,140 @@
+﻿<Page x:Class="ExpenseM.Views.ViewTransactionsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:ExpenseM.Views"
+      xmlns:sysen="clr-namespace:System;assembly=mscorlib"
+      xmlns:ut="clr-namespace:ExpenseM.Utilities"
+      mc:Ignorable="d"
+      d:DesignHeight="450"
+      d:DesignWidth="800"
+      Title="ViewTransactionsPage">
+
+    <Page.Resources>
+        <Style TargetType="DatePicker">
+            <Setter Property="HorizontalAlignment"
+                    Value="Center" />
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+        </Style>
+        <Style TargetType="CheckBox">
+            <Setter Property="HorizontalAlignment"
+                    Value="Center" />
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+        </Style>
+
+        <ObjectDataProvider x:Key="TransactionTypeProvider"
+                            MethodName="GetTransactionType"
+                            ObjectType="{x:Type sysen:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="ut:EnumTransactionType" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Page.Resources>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <CheckBox Content="Expenses"
+                      x:Name="ExpenseCheckbox"
+                      IsChecked="{Binding ExpenseChecked,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                      Click="SelectType" />
+            <CheckBox Content="Income"
+                      x:Name="IncomeCheckbox"
+                      Grid.Column="1"
+                      IsChecked="{Binding IncomeChecked,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                      Click="SelectType" />
+            <CheckBox Content="Recurring"
+                      x:Name="RecurringCheckbox"
+                      Grid.Column="2"
+                      IsChecked="{Binding RecurringChecked,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                      Click="RecurringCheckbox_Click" />
+            <StackPanel  Grid.Column="3"
+                         Orientation="Vertical"
+                         HorizontalAlignment="Center">
+                <Label Content="From" />
+                <DatePicker x:Name="StartDatePicker"
+                            Grid.Column="3"
+                            CalendarClosed="SetStartDate"
+                            DisplayDateEnd="{Binding ToDate}"
+                            SelectedDate="{Binding FromDate, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
+            <StackPanel  Grid.Column="4"
+                         Orientation="Vertical"
+                         HorizontalAlignment="Center">
+                <Label Content="To" />
+                <DatePicker x:Name="EndDatePicker"
+                            Grid.Column="4"
+                            CalendarClosed="SetEndDate"
+                            DisplayDateStart="{Binding FromDate}"
+                            SelectedDate="{Binding ToDate, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
+
+        </Grid>
+        <Grid Grid.Row="1">
+            <DataGrid HorizontalAlignment="Center"
+                      Height="500"
+                      VerticalAlignment="Top"
+                      Width="900"
+                      ItemsSource="{Binding TransactionList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                      Name="TransactionsDataGrid"
+                      CanUserAddRows="False"
+                      IsReadOnly="True"
+                      AlternatingRowBackground="AliceBlue"
+                      AutoGenerateColumns="False">
+
+                <DataGrid.Columns>
+
+                    <DataGridTemplateColumn Header="Contact"
+                                            Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Contact.FirstName}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Amount"
+                                        Width="*"
+                                        Binding="{Binding Path=Amount,StringFormat='${0}'}" />
+                    <DataGridTextColumn Header="Type"
+                                        Width="*"
+                                        Binding="{Binding Path=TransactionType}" />
+                    <DataGridTextColumn Header="Description"
+                                        Width="*"
+                                        Binding="{Binding Path=Description}" />
+                    <DataGridTemplateColumn Header="Date"
+                                            Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=StartDate,StringFormat=d}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Recurring End"
+                                            Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=EndDate,StringFormat=d}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+    </Grid>
+</Page>

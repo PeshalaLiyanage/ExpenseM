@@ -1,0 +1,142 @@
+﻿<Page xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:ExpenseM.Views"
+      xmlns:UserControls="clr-namespace:ExpenseM.UserControls"
+      xmlns:res="clr-namespace:ExpenseM.Properties"
+      x:Class="ExpenseM.Views.HomePage"
+      mc:Ignorable="d"
+      d:DesignHeight="700"
+      d:DesignWidth="1000"
+      FontSize="16"
+      Title="HomePage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="229*" />
+            <ColumnDefinition Width="771*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical"
+                    Grid.Column="0"
+                    VerticalAlignment="Top"
+                    MaxWidth="229"
+                    Background="AliceBlue"
+                    Height="700">
+            <Button Content="Create Contact"
+                    HorizontalAlignment="Left"
+                    Margin="10,10,0,0"
+                    VerticalAlignment="Top"
+                    Width="209"
+                    RenderTransformOrigin="-6.549,1.081"
+                    Height="40"
+                    Click="CreateContactBtn_Click" />
+            <Button x:Name="NavAddExpensesBtn"
+                    Content="Add Transactions"
+                    HorizontalAlignment="Left"
+                    Margin="10,10,0,0"
+                    VerticalAlignment="Top"
+                    Width="209"
+                    RenderTransformOrigin="-6.549,1.081"
+                    Height="40"
+                    Click="NavAddExpenseBtn_Click" />
+            <Button x:Name="ViewTransactionsBtn"
+                    Content="View Transactions"
+                    HorizontalAlignment="Left"
+                    Margin="10,10,0,0"
+                    VerticalAlignment="Top"
+                    Width="209"
+                    RenderTransformOrigin="-6.549,1.081"
+                    Height="40"
+                    Click="NavViewTransactions_Click" />
+            <Button x:Name="ContactsViewNav"
+                    Content="View Contacts"
+                    HorizontalAlignment="Left"
+                    Margin="10,10,0,0"
+                    VerticalAlignment="Top"
+                    Width="209"
+                    RenderTransformOrigin="-6.549,1.081"
+                    Height="40"
+                    Click="ContactsViewNav_Click" />
+
+        </StackPanel>
+
+        <Grid Grid.Column="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition  Height="50" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0"
+                        Orientation="Vertical"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top">
+                <Label Content="{Binding FINANCIAL_STATUS, Source={StaticResource ResourceKey=ApplicationResources}}"
+                       HorizontalAlignment="Center"
+                       Margin="0,50,0,50"
+                       FontSize="25" />
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,0,0,50">
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center">
+                        <Label Content="From"
+                               Width="50" />
+                        <DatePicker Width="200"
+                                    Name="FromDatePicker"
+                                    Text="Select a date"
+                                    CalendarClosed="FromDatePicker_CalendarClosed"
+                                    DisplayDateEnd="{Binding ToDate}"
+                                    SelectedDate="{Binding FromDate, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+
+                        <Label Content="To"
+                               Width="25"
+                               Margin="30,0,10,0" />
+                        <DatePicker Width="200"
+                                    Name="ToDatePicker"
+                                    Text="Select a date"
+                                    CalendarClosed="ToDatePicker_CalendarClosed"
+                                    DisplayDateStart="{Binding FromDate}"
+                                    SelectedDate="{Binding ToDate, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical"
+                            HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,0,0,20">
+                        <Label Content="{Binding TOTAL_INCOME, Source={StaticResource ResourceKey=ApplicationResources}}"
+                               Width="120"
+                               Margin="0,0,50,0" />
+                        <TextBox Text="{Binding TotalIncome,StringFormat='${0}'}"
+                                 Width="120"
+                                 IsReadOnly="True" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{Binding TOTAL_EXPENSES, Source={StaticResource ResourceKey=ApplicationResources}}"
+                               Width="120"
+                               Margin="0,0,50,0" />
+                        <TextBox Text="{Binding TotalExpenses,StringFormat='${0}'}"
+                                 Width="120"
+                                 IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        <StatusBar Grid.Column="1"
+                   Grid.Row="0"
+                   HorizontalAlignment="Left"
+                   Height="41"
+                   VerticalAlignment="Bottom"
+                   Width="771">
+
+            <TextBlock Text="Status : " />
+
+            <StatusBarItem Content="{Binding StatusMessage}" />
+
+        </StatusBar>
+
+    </Grid>
+</Page>

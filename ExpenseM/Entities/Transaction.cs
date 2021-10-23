@@ -15,13 +15,14 @@ namespace ExpenseM.Entities
     public partial class Transaction
     {
         public int Id { get; set; }
-        public string TransactionTyoe { get; set; }
-        public string Amount { get; set; }
-        public string RecurrentStatus { get; set; }
-        public string StartDate { get; set; }
-        public string EndDate { get; set; }
-        public string CreatedAt { get; set; }
+        public short TransactionTyoe { get; set; }
+        public short Amount { get; set; }
+        public short RecurrentStatus { get; set; }
+        public System.DateTime StartDate { get; set; }
+        public Nullable<System.DateTime> EndDate { get; set; }
+        public System.DateTime CreatedAt { get; set; }
         public int UserId { get; set; }
+        public string Description { get; set; }
     
         public virtual User User { get; set; }
     }

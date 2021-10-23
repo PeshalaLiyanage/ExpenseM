@@ -12,44 +12,38 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ExpenseM.Utilities;
 
 namespace ExpenseM.UserControls
 {
-    /// <summary>
-    /// Interaction logic for LabeledTextbox.xaml
-    /// </summary>
-    public partial class LabeledTextbox : UserControl
+  /// <summary>
+  /// Interaction logic for LabeledTextbox.xaml
+  /// </summary>
+  public partial class LabeledTextbox : UserControl
+  {
+
+    public LabeledTextbox()
     {
-
-        private String _title = "Title";
-        private String userInputbox = "";
-
-
-        public LabeledTextbox()
-        {
-            InitializeComponent();
-            this.DataContext = this;
-        }
-
-        //public string Title
-        //{
-        //    get => _title;
-        //    set
-        //    {
-        //        this._title = value;
-        //    }
-        //}
-
-        //public string TextboxTitle
-        //{
-        //    get => userInputbox;
-        //    set
-        //    {
-        //        this.userInputbox = value;
-        //    }
-        //}
-        public string TitleLength { get; set; }
-
-        public int MaxLength { get; set; }
+      InitializeComponent();
+      this.DataContext = this;
     }
+
+    public string LabelName { get; set; }
+    public string TextboxInput { get; set; }
+
+    public string TitleLength { get; set; }
+
+    public int MaxLength { get; set; }
+
+    private void Textbox_MouseEnter(object sender, MouseEventArgs e)
+    {
+      this.UserInputbox.Background = Brushes.AliceBlue;
+    }
+
+    private void Textbox_MouseLeave(object sender, MouseEventArgs e)
+    {
+      this.UserInputbox.Background = Brushes.White;
+
+    }
+  }
 }
